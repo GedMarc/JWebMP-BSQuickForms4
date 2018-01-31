@@ -1,7 +1,7 @@
 package com.armineasy.jwebswing.plugins.quickforms.annotations.actions;
 
+import za.co.mmagon.jwebswing.plugins.bootstrap.options.BSColumnOptions;
 import za.co.mmagon.jwebswing.plugins.bootstrap.options.BSOffsetOptions;
-import za.co.mmagon.jwebswing.plugins.bootstrap.options.BSWidthOptions;
 
 import java.lang.annotation.*;
 
@@ -13,14 +13,12 @@ import java.lang.annotation.*;
 @Inherited
 public @interface SubmitButtonField
 {
-	BSWidthOptions[] sizes() default
-			{
-					BSWidthOptions.col_xs_12, BSWidthOptions.col_md_4, BSWidthOptions.col_lg_3
+	BSColumnOptions[] sizes() default
+			{BSColumnOptions.Col_12, BSColumnOptions.Col_Md_4, BSColumnOptions.Col_Lg_4
 			};
 
 	BSOffsetOptions[] offsets() default
-			{
-					BSOffsetOptions.col_md_offset_2
+			{BSOffsetOptions.Offset_Md_3
 			};
 
 
