@@ -160,7 +160,7 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>jwebswing-bootstrap-switch</artifactId>
+            <artifactId>jwebswing-bootstrap-switch4</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
