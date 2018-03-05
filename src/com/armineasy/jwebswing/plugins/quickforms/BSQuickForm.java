@@ -53,15 +53,6 @@ public abstract class BSQuickForm<E extends Serializable, G extends BSFormGroup<
 	}
 
 	@Override
-	@SuppressWarnings("unchecked")
-	protected G buildFieldGroup()
-	{
-		BSFormGroup fieldGroup = new BSFormGroup<>();
-		fieldGroup.setInline(isInline());
-		return (G) fieldGroup;
-	}
-
-	@Override
 	public QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> buildTextField(Field field, TextField anno, QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> fieldGroup)
 	{
 

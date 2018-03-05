@@ -9,153 +9,156 @@ import za.co.mmagon.jwebswing.plugins.quickforms.events.QuickFormsCancelEvent;
 import za.co.mmagon.jwebswing.plugins.quickforms.events.QuickFormsClearEvent;
 import za.co.mmagon.jwebswing.plugins.quickforms.events.QuickFormsSubmitEvent;
 
-public class BSQuickFormTest extends BaseTestClass
+public class BSQuickFormTest
+		extends BaseTestClass
 {
 	private BSQuickForm form;
-	
+
 	@BeforeEach
 	public void setUp()
 	{
 		form = new BSQuickFormImpl(new Dto());
 	}
-	
+
 	@Test
-	public void buildForm() throws Exception
+	public void buildForm()
 	{
 		System.out.println(form.toString(true));
 	}
-	
+
 	@Test
-	public void buildTextForm() throws Exception
+	public void buildTextForm()
 	{
 	}
-	
+
 	@Test
-	public void buildDatePicker() throws Exception
+	public void buildDatePicker()
 	{
 	}
-	
+
 	@Test
-	public void buildEmailField() throws Exception
+	public void buildEmailField()
 	{
 	}
-	
+
 	@Test
-	public void buildPasswordField() throws Exception
+	public void buildPasswordField()
 	{
 	}
-	
+
 	@Test
-	public void buildColourField() throws Exception
+	public void buildColourField()
 	{
 	}
-	
+
 	@Test
-	public void buildCheckboxField() throws Exception
+	public void buildCheckboxField()
 	{
 	}
-	
+
 	@Test
-	public void buildFileUploadField() throws Exception
+	public void buildFileUploadField()
 	{
 	}
-	
+
 	@Test
-	public void buildPrettyCheckbox() throws Exception
+	public void buildPrettyCheckbox()
 	{
-	
+
 	}
-	
+
 	@Test
-	public void buildFieldLabel() throws Exception
-	{
-	}
-	
-	@Test
-	public void buildRadioField() throws Exception
+	public void buildFieldLabel()
 	{
 	}
-	
+
 	@Test
-	public void buildSearchField() throws Exception
+	public void buildRadioField()
 	{
 	}
-	
+
 	@Test
-	public void buildSelectField() throws Exception
+	public void buildSearchField()
 	{
 	}
-	
+
 	@Test
-	public void buildTelephoneField() throws Exception
+	public void buildSelectField()
 	{
 	}
-	
+
 	@Test
-	public void buildTextAreaField() throws Exception
+	public void buildTelephoneField()
 	{
 	}
-	
+
 	@Test
-	public void buildTimeField() throws Exception
+	public void buildTextAreaField()
 	{
 	}
-	
+
 	@Test
-	public void buildUrlField() throws Exception
+	public void buildTimeField()
 	{
 	}
-	
-	public class Dto extends JavaScriptPart
+
+	@Test
+	public void buildUrlField()
+	{
+	}
+
+	public class Dto
+			extends JavaScriptPart
 	{
 		private String name;
 		private String description;
 		private String textLine;
 		private String textArea;
 		private boolean booleanField;
-		
+
 		public String getName()
 		{
 			return name;
 		}
-		
+
 		public void setName(String name)
 		{
 			this.name = name;
 		}
-		
+
 		public String getDescription()
 		{
 			return description;
 		}
-		
+
 		public void setDescription(String description)
 		{
 			this.description = description;
 		}
-		
+
 		public String getTextLine()
 		{
 			return textLine;
 		}
-		
+
 		public void setTextLine(String textLine)
 		{
 			this.textLine = textLine;
 		}
-		
+
 		public String getTextArea()
 		{
 			return textArea;
 		}
-		
+
 		public void setTextArea(String textArea)
 		{
 			this.textArea = textArea;
 		}
 	}
 
-	class BSQuickFormImpl<G extends BSFormGroup<G>, J extends BSQuickFormImpl<G, J>> extends BSQuickForm<Dto, G, J>
+	class BSQuickFormImpl<G extends BSFormGroup<G>, J extends BSQuickFormImpl<G, J>>
+			extends BSQuickForm<Dto, G, J>
 	{
 
 		/**
@@ -166,6 +169,12 @@ public class BSQuickFormTest extends BaseTestClass
 		public BSQuickFormImpl(Dto anything)
 		{
 			super(anything);
+		}
+
+		@Override
+		protected G buildFieldGroup()
+		{
+			return null;
 		}
 
 		@Override
