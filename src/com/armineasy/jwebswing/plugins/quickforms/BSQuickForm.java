@@ -314,14 +314,12 @@ public abstract class BSQuickForm<E extends Serializable, G extends BSFormGroup<
 		if (!anno.onText()
 		         .isEmpty())
 		{
-			input.getOptions()
-			     .setOnText(anno.onText());
+			input.setOnText(anno.onText());
 		}
 		if (!anno.offText()
 		         .isEmpty())
 		{
-			input.getOptions()
-			     .setOffText(anno.offText());
+			input.setOffText(anno.offText());
 		}
 		if (!anno.requiredMessage()
 		         .isEmpty())
