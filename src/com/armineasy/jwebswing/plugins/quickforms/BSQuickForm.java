@@ -8,7 +8,7 @@ package com.armineasy.jwebswing.plugins.quickforms;
 import za.co.mmagon.jwebswing.plugins.bootstrap.forms.BSFormLabel;
 import za.co.mmagon.jwebswing.plugins.bootstrap.forms.controls.*;
 import za.co.mmagon.jwebswing.plugins.bootstrap.forms.groups.BSFormGroup;
-import za.co.mmagon.jwebswing.plugins.bootstrapswitch.BootstrapSwitchCheckBox;
+import za.co.mmagon.jwebswing.plugins.bootstraptoggle.BSToggle;
 import za.co.mmagon.jwebswing.plugins.quickforms.IQuickForm;
 import za.co.mmagon.jwebswing.plugins.quickforms.QuickFormFieldGroup;
 import za.co.mmagon.jwebswing.plugins.quickforms.QuickForms;
@@ -284,7 +284,7 @@ public abstract class BSQuickForm<E extends Serializable, G extends BSFormGroup<
 	@Override
 	public QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> buildSwitchField(Field field, SwitchField anno, QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> fieldGroup)
 	{
-		BootstrapSwitchCheckBox input = new BootstrapSwitchCheckBox();
+		BSToggle input = new BSToggle();
 		input.bind(getID() + StaticStrings.STRING_DOT + field.getName());
 		if (anno.required())
 		{
