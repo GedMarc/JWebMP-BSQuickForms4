@@ -1,13 +1,13 @@
 package com.armineasy.jwebswing.plugins.quickforms;
 
+import com.jwebmp.BaseTestClass;
+import com.jwebmp.htmlbuilder.javascript.JavaScriptPart;
+import com.jwebmp.plugins.bootstrap.forms.groups.BSFormGroup;
+import com.jwebmp.plugins.quickforms.events.QuickFormsCancelEvent;
+import com.jwebmp.plugins.quickforms.events.QuickFormsClearEvent;
+import com.jwebmp.plugins.quickforms.events.QuickFormsSubmitEvent;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import za.co.mmagon.jwebswing.BaseTestClass;
-import za.co.mmagon.jwebswing.htmlbuilder.javascript.JavaScriptPart;
-import za.co.mmagon.jwebswing.plugins.bootstrap.forms.groups.BSFormGroup;
-import za.co.mmagon.jwebswing.plugins.quickforms.events.QuickFormsCancelEvent;
-import za.co.mmagon.jwebswing.plugins.quickforms.events.QuickFormsClearEvent;
-import za.co.mmagon.jwebswing.plugins.quickforms.events.QuickFormsSubmitEvent;
 
 public class BSQuickFormTest
 		extends BaseTestClass

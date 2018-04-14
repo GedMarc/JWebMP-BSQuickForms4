@@ -1,6 +1,6 @@
 package com.armineasy.jwebswing.plugins.quickforms.annotations.actions;
 
-import za.co.mmagon.jwebswing.plugins.bootstrap4.options.BSColumnOptions;
+import com.jwebmp.plugins.bootstrap4.options.BSColumnOptions;
 
 import java.lang.annotation.*;
 

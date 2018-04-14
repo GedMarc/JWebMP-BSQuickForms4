@@ -1,19 +1,36 @@
 /*
+ * Copyright (C) 2017 Marc Magon
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package com.armineasy.jwebswing.plugins.quickforms;
 
-import za.co.mmagon.jwebswing.plugins.bootstrap.forms.BSFormLabel;
-import za.co.mmagon.jwebswing.plugins.bootstrap.forms.controls.*;
-import za.co.mmagon.jwebswing.plugins.bootstrap.forms.groups.BSFormGroup;
-import za.co.mmagon.jwebswing.plugins.bootstraptoggle.BSToggle;
-import za.co.mmagon.jwebswing.plugins.quickforms.IQuickForm;
-import za.co.mmagon.jwebswing.plugins.quickforms.QuickFormFieldGroup;
-import za.co.mmagon.jwebswing.plugins.quickforms.QuickForms;
-import za.co.mmagon.jwebswing.plugins.quickforms.annotations.*;
-import za.co.mmagon.jwebswing.utilities.StaticStrings;
+import com.jwebmp.plugins.bootstrap.forms.BSFormLabel;
+import com.jwebmp.plugins.bootstrap.forms.controls.*;
+import com.jwebmp.plugins.bootstrap.forms.groups.BSFormGroup;
+import com.jwebmp.plugins.bootstraptoggle.BSToggle;
+import com.jwebmp.plugins.quickforms.IQuickForm;
+import com.jwebmp.plugins.quickforms.QuickFormFieldGroup;
+import com.jwebmp.plugins.quickforms.QuickForms;
+import com.jwebmp.plugins.quickforms.annotations.*;
+import com.jwebmp.utilities.StaticStrings;
 import za.co.mmagon.logger.LogFactory;
 
 import java.io.Serializable;
@@ -115,9 +132,7 @@ public abstract class BSQuickForm<E extends Serializable, G extends BSFormGroup<
 	}
 
 	@Override
-	public QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> buildDateTimePicker(Field field, DateTimePickerField anno,
-	                                                                                 QuickFormFieldGroup<G, ? extends QuickFormFieldGroup>
-			                                                                                 fieldGroup)
+	public QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> buildDateTimePicker(Field field, DateTimePickerField anno, QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> fieldGroup)
 	{
 		return null;
 	}
@@ -169,9 +184,7 @@ public abstract class BSQuickForm<E extends Serializable, G extends BSFormGroup<
 	}
 
 	@Override
-	public QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> buildSubHeaderField(Field field, SubHeaderField anno,
-	                                                                                 QuickFormFieldGroup<G, ? extends QuickFormFieldGroup>
-			                                                                                 fieldGroup)
+	public QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> buildSubHeaderField(Field field, SubHeaderField anno, QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> fieldGroup)
 	{
 		BSFormLabel label = new BSFormLabel();
 		label.setTag("H3");
@@ -197,9 +210,7 @@ public abstract class BSQuickForm<E extends Serializable, G extends BSFormGroup<
 	}
 
 	@Override
-	public QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> buildPasswordField(Field field, PasswordField anno,
-	                                                                                QuickFormFieldGroup<G, ? extends QuickFormFieldGroup>
-			                                                                                fieldGroup)
+	public QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> buildPasswordField(Field field, PasswordField anno, QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> fieldGroup)
 	{
 		BSFormPasswordInput input = new BSFormPasswordInput();
 		input.bind(getID() + StaticStrings.STRING_DOT + field.getName());
@@ -247,8 +258,7 @@ public abstract class BSQuickForm<E extends Serializable, G extends BSFormGroup<
 	}
 
 	@Override
-	public QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> buildColourField(Field field, QuickFormFieldGroup<G, ? extends
-			                                                                                                                      QuickFormFieldGroup> fieldGroup)
+	public QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> buildColourField(Field field, QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> fieldGroup)
 	{
 		return null;
 	}
@@ -260,23 +270,20 @@ public abstract class BSQuickForm<E extends Serializable, G extends BSFormGroup<
 	}
 
 	@Override
-	public QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> buildFileUploadField(Field field, QuickFormFieldGroup<G, ? extends
-			                                                                                                                          QuickFormFieldGroup> fieldGroup)
+	public QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> buildFileUploadField(Field field, QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> fieldGroup)
 	{
 
 		return null;
 	}
 
 	@Override
-	public QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> buildRadioField(Field field, QuickFormFieldGroup<G, ? extends
-			                                                                                                                     QuickFormFieldGroup> fieldGroup)
+	public QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> buildRadioField(Field field, QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> fieldGroup)
 	{
 		return null;
 	}
 
 	@Override
-	public QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> buildSearchField(Field field, QuickFormFieldGroup<G, ? extends
-			                                                                                                                      QuickFormFieldGroup> fieldGroup)
+	public QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> buildSearchField(Field field, QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> fieldGroup)
 	{
 		return null;
 	}
@@ -345,9 +352,7 @@ public abstract class BSQuickForm<E extends Serializable, G extends BSFormGroup<
 	}
 
 	@Override
-	public QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> buildSelectDropDownField(Field field, SelectField anno,
-	                                                                                      QuickFormFieldGroup<G, ? extends
-			                                                                                                             QuickFormFieldGroup> fieldGroup)
+	public QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> buildSelectDropDownField(Field field, SelectField anno, QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> fieldGroup)
 	{
 		return null;
 	}
@@ -359,17 +364,13 @@ public abstract class BSQuickForm<E extends Serializable, G extends BSFormGroup<
 	}
 
 	@Override
-	public QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> buildTelephoneField(Field field, TelephoneField anno,
-	                                                                                 QuickFormFieldGroup<G, ? extends QuickFormFieldGroup>
-			                                                                                 fieldGroup)
+	public QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> buildTelephoneField(Field field, TelephoneField anno, QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> fieldGroup)
 	{
 		return null;
 	}
 
 	@Override
-	public QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> buildTextAreaField(Field field, TextAreaField anno,
-	                                                                                QuickFormFieldGroup<G, ? extends QuickFormFieldGroup>
-			                                                                                fieldGroup)
+	public QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> buildTextAreaField(Field field, TextAreaField anno, QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> fieldGroup)
 	{
 		BSFormTextAreaInput input = new BSFormTextAreaInput();
 		input.bind(getID() + StaticStrings.STRING_DOT + field.getName());
@@ -469,9 +470,7 @@ public abstract class BSQuickForm<E extends Serializable, G extends BSFormGroup<
 	}
 
 	@Override
-	public QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> buildNumberSpinnerField(Field field, NumberSpinnerField anno,
-	                                                                                     QuickFormFieldGroup<G, ? extends
-			                                                                                                            QuickFormFieldGroup> fieldGroup)
+	public QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> buildNumberSpinnerField(Field field, NumberSpinnerField anno, QuickFormFieldGroup<G, ? extends QuickFormFieldGroup> fieldGroup)
 	{
 		BSFormNumberInput input = new BSFormNumberInput();
 		input.bind(getID() + StaticStrings.STRING_DOT + field.getName());
