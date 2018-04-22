@@ -1,6 +1,5 @@
 package com.armineasy.jwebswing.plugins.quickforms;
 
-import com.jwebmp.BaseTestClass;
 import com.jwebmp.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.plugins.bootstrap.forms.groups.BSFormGroup;
 import com.jwebmp.plugins.quickforms.events.QuickFormsCancelEvent;
@@ -10,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class BSQuickFormTest
-		extends BaseTestClass
+
 {
 	private BSQuickForm form;
 
