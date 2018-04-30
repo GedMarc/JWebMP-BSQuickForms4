@@ -1,10 +1,7 @@
 package com.armineasy.jwebswing.plugins.quickforms;
 
 import com.jwebmp.htmlbuilder.javascript.JavaScriptPart;
-import com.jwebmp.plugins.bootstrap.forms.groups.BSFormGroup;
-import com.jwebmp.plugins.quickforms.events.QuickFormsCancelEvent;
-import com.jwebmp.plugins.quickforms.events.QuickFormsClearEvent;
-import com.jwebmp.plugins.quickforms.events.QuickFormsSubmitEvent;
+import com.jwebmp.plugins.quickforms.annotations.TextField;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +13,7 @@ public class BSQuickFormTest
 	@BeforeEach
 	public void setUp()
 	{
-		form = new BSQuickFormImpl(new Dto());
+		form = new BSQuickForm(new Dto());
 	}
 
 	@Test
@@ -109,6 +106,7 @@ public class BSQuickFormTest
 	public class Dto
 			extends JavaScriptPart
 	{
+		@TextField
 		private String name;
 		private String description;
 		private String textLine;
@@ -156,42 +154,4 @@ public class BSQuickFormTest
 		}
 	}
 
-	class BSQuickFormImpl<G extends BSFormGroup<G>, J extends BSQuickFormImpl<G, J>>
-			extends BSQuickForm<Dto, G, J>
-	{
-
-		/**
-		 * Constructs a new BSQuickForm
-		 *
-		 * @param anything
-		 */
-		public BSQuickFormImpl(Dto anything)
-		{
-			super(anything);
-		}
-
-		@Override
-		protected G buildFieldGroup()
-		{
-			return null;
-		}
-
-		@Override
-		protected Class<? extends QuickFormsSubmitEvent> onSubmit()
-		{
-			return null;
-		}
-
-		@Override
-		protected Class<? extends QuickFormsCancelEvent> onCancel()
-		{
-			return null;
-		}
-
-		@Override
-		protected Class<? extends QuickFormsClearEvent> onClear()
-		{
-			return null;
-		}
-	}
 }

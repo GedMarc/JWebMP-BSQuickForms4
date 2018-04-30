@@ -30,7 +30,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <src.dir>src</src.dir>
         <test.dir>test</test.dir>
-        <additionalparam>-Xdoclint:none</additionalparam>
         <maven.jar.version>3.0.2</maven.jar.version>
         <maven.dependency.version>3.0.1</maven.dependency.version>
         <maven.javadoc.version>2.10.4</maven.javadoc.version>
@@ -158,6 +157,11 @@
         </dependency>
         <dependency>
             <groupId>${project.groupId}</groupId>
+            <artifactId>jwebmp-bootstrap4-date-time-picker</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
             <artifactId>jwebmp-quickforms</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -169,6 +173,11 @@
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>jwebmp-smart-wizard</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>jwebmp-angular-file-upload</artifactId>
             <version>${project.version}</version>
         </dependency>
 
