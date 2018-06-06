@@ -30,7 +30,9 @@ import com.jwebmp.base.html.H3;
 import com.jwebmp.base.html.Label;
 import com.jwebmp.base.html.inputs.*;
 import com.jwebmp.events.click.ClickAdapter;
+import com.jwebmp.guiceinjection.GuiceContext;
 import com.jwebmp.htmlbuilder.javascript.JavaScriptPart;
+import com.jwebmp.logger.LogFactory;
 import com.jwebmp.plugins.bootstrap4.buttons.BSButton;
 import com.jwebmp.plugins.bootstrap4.forms.BSForm;
 import com.jwebmp.plugins.bootstrap4.forms.groups.BSFormGroup;
@@ -46,8 +48,6 @@ import com.jwebmp.plugins.quickforms.annotations.states.WebReadOnly;
 import com.jwebmp.plugins.quickforms.annotations.states.WebReadOnlyPlainText;
 import com.jwebmp.utilities.StaticStrings;
 import org.apache.commons.lang3.StringEscapeUtils;
-import za.co.mmagon.guiceinjection.GuiceContext;
-import za.co.mmagon.logger.LogFactory;
 
 import javax.validation.constraints.NotNull;
 import java.lang.reflect.Field;
