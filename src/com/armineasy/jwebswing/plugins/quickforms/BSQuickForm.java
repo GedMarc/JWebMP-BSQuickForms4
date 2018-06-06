@@ -102,14 +102,12 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 		}
 		if (fieldType.isArray())
 		{
-
+			log.warning("No implementation for array type found");
 		}
 		else if (JavaScriptPart.class.isAssignableFrom(fieldType))
 		{
 			group = buildTextField(field, new DefaultTextField()
-			{
-
-			}, group);
+			{}, group);
 			group.setReadOnly(true);
 			group.getInput()
 			     .bind(null)
@@ -132,50 +130,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 		}
 		else
 		{
-			switch (typeName)
-			{
-				case "String":
-				{
-					group = buildTextField(field, new DefaultTextField(), group);
-					break;
-				}
-				case "Enum":
-				{
-					group = buildSelectField(field, new DefaultSelectField(), group);
-					break;
-				}
-				case "Integer":
-				{
-					group = buildNumberField(field, new DefaultNumberField(), group);
-					break;
-				}
-				case "Double":
-				{
-					group = buildNumberField(field, new DefaultNumberField(), group);
-					break;
-				}
-				case "BigDecimal":
-				{
-					group = buildNumberField(field, new DefaultNumberField(), group);
-					break;
-				}
-				case "Boolean":
-				{
-					group = buildCheckboxField(field, new DefaultCheckboxField(), group);
-					break;
-				}
-				case "Short":
-				{
-					group = buildNumberField(field, new DefaultNumberField(), group);
-					break;
-				}
-				default:
-				{
-					group = buildTextField(field, new DefaultTextField(), group);
-					break;
-				}
-
-			}
+			buildDefaultGroups(group, field, typeName);
 		}
 		if (group != null)
 		{
@@ -203,7 +158,6 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 	{
 		return (BSForm<?>) super.getForm();
 	}
-
 
 	@Override
 	public BSFormGroup buildTextField(Field field, TextField annotation, BSFormGroup fieldGroup)
@@ -256,6 +210,126 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 			         .addMessage(InputErrorValidations.pattern, annotation.requiredMessage());
 		}
 		return textInput;
+	}
+
+	private BSFormGroup buildDefaultGroups(BSFormGroup group, Field field, String typeName)
+	{
+		switch (typeName)
+		{
+			case "String":
+			{
+				group = buildTextField(field, new DefaultTextField(), group);
+				break;
+			}
+			case "Enum":
+			{
+				group = buildSelectField(field, new DefaultSelectField(), group);
+				break;
+			}
+			case "Integer":
+			{
+				group = buildNumberField(field, new DefaultNumberField(), group);
+				break;
+			}
+			case "Double":
+			{
+				group = buildNumberField(field, new DefaultNumberField(), group);
+				break;
+			}
+			case "BigDecimal":
+			{
+				group = buildNumberField(field, new DefaultNumberField(), group);
+				break;
+			}
+			case "Boolean":
+			{
+				group = buildCheckboxField(field, new DefaultCheckboxField(), group);
+				break;
+			}
+			case "Short":
+			{
+				group = buildNumberField(field, new DefaultNumberField(), group);
+				break;
+			}
+			default:
+			{
+				group = buildTextField(field, new DefaultTextField(), group);
+				break;
+			}
+
+		}
+		return group;
+	}
+
+	protected Optional<LabelField> getLabelFromField(Field field)
+	{
+		if (field.isAnnotationPresent(LabelField.class))
+		{
+			return Optional.of(field.getAnnotation(LabelField.class));
+		}
+		else if (isRenderDefaults())
+		{
+			LabelField lf = new DefaultLabelField()
+			{
+				@Override
+				public String label()
+				{
+					return field.getName();
+				}
+			};
+			return Optional.of(lf);
+		}
+		return Optional.empty();
+	}
+
+	@SuppressWarnings("unchecked")
+	private Map<String, String> toOptions(Object object, Class classType)
+	{
+		Map<String, String> maps = new ConcurrentSkipListMap<>();
+		boolean isEnum = classType.isEnum();
+		boolean isArray = classType.isArray();
+		boolean isCollection = Collection.class.isAssignableFrom(classType);
+		boolean isMap = Map.class.isAssignableFrom(classType);
+
+		if (!(isArray || isCollection || isMap || isEnum))
+		{
+			log.warning("Where In List Clause was not an array collection or map");
+			return new HashMap<>();
+		}
+		if (isEnum)
+		{
+			Object[] enums = classType.getEnumConstants();
+			for (Object o : enums)
+			{
+				Enum e = (Enum) o;
+				maps.put(e.name(), e.toString());
+			}
+		}
+		else if (isArray)
+		{
+			Object[] arrs = (Object[]) object;
+			for (Object arr : arrs)
+			{
+				maps.put(arr.toString(), arr.toString());
+			}
+		}
+		else if (isCollection)
+		{
+			Collection collection = (Collection) object;
+			collection.forEach(a -> maps.put(a.toString(), a.toString()));
+		}
+		else
+		{
+			Map map = (Map) object;
+			map.forEach((key, value) ->
+			            {
+				            if (value != null)
+				            {
+					            maps.put(key.toString(), value.toString());
+				            }
+			            });
+		}
+		return maps;
 	}
 
 	@Override
@@ -330,7 +404,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 		}
 		if (annotation.showControlFeedback())
 		{
-			((BSFormInputGroup) dateInputGroup).setStyleInputGroupTextWithValidation(true);
+			dateInputGroup.setStyleInputGroupTextWithValidation(true);
 		}
 		if (!annotation.classes()
 		               .isEmpty())
@@ -381,7 +455,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 		}
 		if (annotation.showControlFeedback())
 		{
-			((BSFormInputGroup) emailField).setStyleInputGroupTextWithValidation(true);
+			emailField.setStyleInputGroupTextWithValidation(true);
 		}
 		if (!annotation.classes()
 		               .isEmpty())
@@ -502,7 +576,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 		}
 		if (annotation.showControlFeedback())
 		{
-			((BSFormInputGroup) passwordField).setStyleInputGroupTextWithValidation(true);
+			passwordField.setStyleInputGroupTextWithValidation(true);
 		}
 		if (!annotation.classes()
 		               .isEmpty())
@@ -552,7 +626,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 		}
 		if (annotation.showControlFeedback())
 		{
-			((BSFormInputGroup) colourField).setStyleInputGroupTextWithValidation(true);
+			colourField.setStyleInputGroupTextWithValidation(true);
 		}
 		if (!annotation.classes()
 		               .isEmpty())
@@ -780,13 +854,13 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 	@Override
 	public BSFormGroup buildSwitchField(Field field, SwitchField annotation, BSFormGroup fieldGroup)
 	{
-		String label = null;
+		BSToggle input = new BSToggle();
 		if (getLabelFromField(field).isPresent())
 		{
-			label = getLabelFromField(field).get()
-			                                .label();
+			String label = getLabelFromField(field).get()
+			                                       .label();
+			input.setOnText(label);
 		}
-		BSToggle input = new BSToggle();
 		input.bind(getID() + StaticStrings.STRING_DOT + field.getName());
 		fieldGroup.setInput(input);
 
@@ -849,11 +923,8 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 		{
 			Object fieldObject = field.get(getObject());
 			Map<String, String> keys = toOptions(fieldObject, field.getType());
-			keys.forEach((key, value) ->
-			             {
-				             selectGroup.getInput()
-				                        .addOption(key, value);
-			             });
+			keys.forEach((key, value) -> selectGroup.getInput()
+			                                        .addOption(key, value));
 		}
 		catch (Exception e)
 		{
@@ -1248,80 +1319,5 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 		button.addEvent(adapter);
 
 		return button;
-	}
-
-	protected Optional<LabelField> getLabelFromField(Field field)
-	{
-		if (field.isAnnotationPresent(LabelField.class))
-		{
-			return Optional.of(field.getAnnotation(LabelField.class));
-		}
-		else if (isRenderDefaults())
-		{
-			LabelField lf = new DefaultLabelField()
-			{
-				@Override
-				public String label()
-				{
-					return field.getName();
-				}
-			};
-			return Optional.of(lf);
-		}
-		return Optional.empty();
-	}
-
-	@SuppressWarnings("unchecked")
-	private Map<String, String> toOptions(Object object, Class classType)
-	{
-		Map<String, String> maps = new ConcurrentSkipListMap<>();
-		boolean isEnum = classType.isEnum();
-		boolean isArray = classType.isArray();
-		boolean isCollection = Collection.class.isAssignableFrom(classType);
-		boolean isMap = Map.class.isAssignableFrom(classType);
-
-		if (!(isArray || isCollection || isMap || isEnum))
-		{
-			log.warning("Where In List Clause was not an array collection or map");
-			return new HashMap<>();
-		}
-		if (isEnum)
-		{
-			Object[] enums = classType.getEnumConstants();
-			Enum eVal = (Enum) object;
-			for (Object o : enums)
-			{
-				Enum e = (Enum) o;
-				maps.put(e.name(), e.toString());
-			}
-		}
-		else if (isArray)
-		{
-			Object[] arrs = (Object[]) object;
-			for (Object arr : arrs)
-			{
-				maps.put(arr.toString(), arr.toString());
-			}
-		}
-		else if (isCollection)
-		{
-			Collection collection = (Collection) object;
-			collection.forEach(a ->
-			                   {
-				                   maps.put(a.toString(), a.toString());
-			                   });
-		}
-		else
-		{
-			Map map = (Map) object;
-			map.forEach((key, value) ->
-			            {
-				            if (value != null)
-				            {
-					            maps.put(key.toString(), value.toString());
-				            }
-			            });
-		}
-		return maps;
 	}
 }
