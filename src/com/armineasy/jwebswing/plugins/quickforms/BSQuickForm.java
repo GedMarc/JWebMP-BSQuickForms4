@@ -30,7 +30,7 @@ import com.jwebmp.base.html.H3;
 import com.jwebmp.base.html.Label;
 import com.jwebmp.base.html.inputs.*;
 import com.jwebmp.events.click.ClickAdapter;
-import com.jwebmp.guiceinjection.GuiceContext;
+import com.jwebmp.guicedinjection.GuiceContext;
 import com.jwebmp.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.logger.LogFactory;
 import com.jwebmp.plugins.bootstrap4.buttons.BSButton;
@@ -73,7 +73,6 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 
 	private static final long serialVersionUID = 1L;
 	private static final Logger log = LogFactory.getLog("BSQuickForms4");
-
 
 	/**
 	 * Constructs a new BSQuickForm
@@ -715,7 +714,6 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 		fileUploadField.getInput()
 		               .addAttribute("ng-file-model", getFieldVariableName(field));
 		fileUploadField.addHelpText(label);
-
 
 		if (annotation.required())
 		{
