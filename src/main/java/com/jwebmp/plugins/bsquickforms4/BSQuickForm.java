@@ -22,15 +22,16 @@
  */
 package com.jwebmp.plugins.bsquickforms4;
 
-import com.jwebmp.base.ComponentHierarchyBase;
-import com.jwebmp.base.angular.forms.enumerations.InputErrorValidations;
-import com.jwebmp.base.html.H1;
-import com.jwebmp.base.html.H3;
-import com.jwebmp.base.html.Label;
-import com.jwebmp.base.html.inputs.*;
-import com.jwebmp.events.click.ClickAdapter;
+import com.jwebmp.core.base.ComponentHierarchyBase;
+import com.jwebmp.core.base.angular.forms.enumerations.InputErrorValidations;
+import com.jwebmp.core.base.html.H1;
+import com.jwebmp.core.base.html.H3;
+import com.jwebmp.core.base.html.Label;
+import com.jwebmp.core.base.html.inputs.*;
+import com.jwebmp.core.events.click.ClickAdapter;
+import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
+import com.jwebmp.core.utilities.StaticStrings;
 import com.jwebmp.guicedinjection.GuiceContext;
-import com.jwebmp.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.logger.LogFactory;
 import com.jwebmp.plugins.bootstrap4.buttons.BSButton;
 import com.jwebmp.plugins.bootstrap4.forms.BSForm;
@@ -46,7 +47,6 @@ import com.jwebmp.plugins.quickforms.QForm;
 import com.jwebmp.plugins.quickforms.annotations.*;
 import com.jwebmp.plugins.quickforms.annotations.states.WebReadOnly;
 import com.jwebmp.plugins.quickforms.annotations.states.WebReadOnlyPlainText;
-import com.jwebmp.utilities.StaticStrings;
 import org.apache.commons.lang3.StringEscapeUtils;
 
 import javax.validation.constraints.NotNull;

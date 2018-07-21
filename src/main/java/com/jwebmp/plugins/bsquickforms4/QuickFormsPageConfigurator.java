@@ -22,9 +22,9 @@
  */
 package com.jwebmp.plugins.bsquickforms4;
 
-import com.jwebmp.Page;
-import com.jwebmp.PageConfigurator;
-import com.jwebmp.base.angular.AngularPageConfigurator;
+import com.jwebmp.core.Page;
+import com.jwebmp.core.PageConfigurator;
+import com.jwebmp.core.base.angular.AngularPageConfigurator;
 
 /**
  * @author Marc Magon
