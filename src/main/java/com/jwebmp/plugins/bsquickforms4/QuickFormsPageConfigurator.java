@@ -23,19 +23,16 @@
 package com.jwebmp.plugins.bsquickforms4;
 
 import com.jwebmp.core.Page;
-import com.jwebmp.core.PageConfigurator;
 import com.jwebmp.core.base.angular.AngularPageConfigurator;
+import com.jwebmp.core.services.IPageConfigurator;
 
 /**
  * @author Marc Magon
  * @since 25 Mar 2017
  */
 public class QuickFormsPageConfigurator
-		extends PageConfigurator
+		implements IPageConfigurator
 {
-
-	private static final long serialVersionUID = 1L;
-
 	/*
 	 * Constructs a new QuickFormsPageConfigurator
 	 */

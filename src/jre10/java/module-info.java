@@ -1,3 +1,6 @@
+import com.jwebmp.core.services.IPageConfigurator;
+import com.jwebmp.plugins.bsquickforms4.QuickFormsPageConfigurator;
+
 module com.jwebmp.plugins.bsquickforms4 {
 	exports com.jwebmp.plugins.bsquickforms4;
 
@@ -14,4 +17,7 @@ module com.jwebmp.plugins.bsquickforms4 {
 	requires com.jwebmp.guicedinjection;
 	requires commons.lang3;
 	requires java.logging;
+
+	provides IPageConfigurator with QuickFormsPageConfigurator;
+
 }
