@@ -15,11 +15,11 @@ module com.jwebmp.plugins.bsquickforms4 {
 	requires com.jwebmp.plugins.bs4datetimepicker;
 	requires com.jwebmp.plugins.bootstraptoggle;
 	requires com.jwebmp.guicedinjection;
-	requires commons.lang3;
+
 	requires java.logging;
 
 	provides IPageConfigurator with QuickFormsPageConfigurator;
-	opens com.jwebmp.plugins.bsquickforms4.annotations.actions to com.fasterxml.jackson.databind,com.jwebmp.core;
-	opens com.jwebmp.plugins.bsquickforms4.annotations.implementations to com.fasterxml.jackson.databind,com.jwebmp.core;
-	opens com.jwebmp.plugins.bsquickforms4 to com.fasterxml.jackson.databind,com.jwebmp.core;
+	opens com.jwebmp.plugins.bsquickforms4.annotations.actions to com.fasterxml.jackson.databind, com.jwebmp.core;
+	opens com.jwebmp.plugins.bsquickforms4.annotations.implementations to com.fasterxml.jackson.databind, com.jwebmp.core;
+	opens com.jwebmp.plugins.bsquickforms4 to com.fasterxml.jackson.databind, com.jwebmp.core;
 }
