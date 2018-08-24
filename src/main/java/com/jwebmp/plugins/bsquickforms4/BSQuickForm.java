@@ -43,11 +43,11 @@ import com.jwebmp.plugins.bootstrap4.forms.groups.sets.BSFormRadioGroup;
 import com.jwebmp.plugins.bootstraptoggle.BSToggle;
 import com.jwebmp.plugins.bs4datetimepicker.BS4DateTimePicker;
 import com.jwebmp.plugins.bsquickforms4.annotations.implementations.*;
-import com.jwebmp.plugins.quickforms.QForm;
+import com.jwebmp.plugins.quickforms.QuickForms;
 import com.jwebmp.plugins.quickforms.annotations.*;
 import com.jwebmp.plugins.quickforms.annotations.states.WebReadOnly;
 import com.jwebmp.plugins.quickforms.annotations.states.WebReadOnlyPlainText;
-import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.commons.text.StringEscapeUtils;
 
 import javax.validation.constraints.NotNull;
 import java.lang.reflect.Field;
@@ -68,7 +68,7 @@ import java.util.logging.Logger;
  * @since 25 Mar 2017
  */
 public class BSQuickForm<J extends BSQuickForm<J>>
-		extends QForm<BSFormGroup<?, ?>, J>
+		extends QuickForms<BSFormGroup<?, ?>, J>
 {
 
 	private static final long serialVersionUID = 1L;
@@ -101,7 +101,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 		}
 		if (fieldType.isArray())
 		{
-			log.warning("No implementation for array type found");
+			BSQuickForm.log.warning("No implementation for array type found");
 		}
 		else if (JavaScriptPart.class.isAssignableFrom(fieldType))
 		{
@@ -168,7 +168,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 			                                .label();
 
 		}
-		BSFormInputGroup<?, InputTextType<?>> textInput = getForm().addTextInput(getFieldVariableName(field), label, true);
+		BSFormInputGroup<?, InputTextType<?>> textInput = getForm().createTextInput(getFieldVariableName(field), label, true);
 
 		if (annotation.showControlFeedback())
 		{
@@ -292,7 +292,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 
 		if (!(isArray || isCollection || isMap || isEnum))
 		{
-			log.warning("Where In List Clause was not an array collection or map");
+			BSQuickForm.log.warning("Where In List Clause was not an array collection or map");
 			return new HashMap<>();
 		}
 		if (isEnum)
@@ -393,7 +393,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 			label = getLabelFromField(field).get()
 			                                .label();
 		}
-		BSFormInputGroup<?, InputDateType<?>> dateInputGroup = getForm().addDateInput(getFieldVariableName(field), label, true);
+		BSFormInputGroup<?, InputDateType<?>> dateInputGroup = getForm().createDateInput(getFieldVariableName(field), label, true);
 		dateInputGroup.getInput()
 		              .bind(getFieldVariableName(field));
 		if (annotation.required())
@@ -443,7 +443,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 			                                .label();
 
 		}
-		BSFormInputGroup<?, InputEmailType<?>> emailField = getForm().addEmailInput(getFieldVariableName(field), label, true);
+		BSFormInputGroup<?, InputEmailType<?>> emailField = getForm().createEmailInput(getFieldVariableName(field), label, true);
 		emailField.setInput(new InputEmailType<>());
 		emailField.getInput()
 		          .bind(getFieldVariableName(field));
@@ -565,7 +565,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 			                                .label();
 
 		}
-		BSFormInputGroup<?, InputPasswordType<?>> passwordField = getForm().addPasswordInput(getFieldVariableName(field), label, true);
+		BSFormInputGroup<?, InputPasswordType<?>> passwordField = getForm().createPasswordInput(getFieldVariableName(field), label, true);
 		passwordField.setInput(new InputPasswordType<>());
 		passwordField.bind(getFieldVariableName(field));
 		if (annotation.required())
@@ -663,7 +663,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 			label = getLabelFromField(field).get()
 			                                .label();
 		}
-		BSFormCheckGroup<?> checkboxField = getForm().addCheckboxInput(getFieldVariableName(field), label);
+		BSFormCheckGroup<?> checkboxField = getForm().createCheckboxInput(getFieldVariableName(field), label);
 		checkboxField.setInput(new InputCheckBoxType<>());
 		checkboxField.getInput()
 		             .bind(getFieldVariableName(field));
@@ -709,7 +709,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 			label = getLabelFromField(field).get()
 			                                .label();
 		}
-		BSFormInputGroup<?, InputFileType<?>> fileUploadField = getForm().addFileInput(getFieldVariableName(field), label, true);
+		BSFormInputGroup<?, InputFileType<?>> fileUploadField = getForm().createFileInput(getFieldVariableName(field), label, true);
 		fileUploadField.setInput(new InputFileType<>());
 		fileUploadField.getInput()
 		               .addAttribute("ng-file-model", getFieldVariableName(field));
@@ -761,7 +761,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 			label = getLabelFromField(field).get()
 			                                .label();
 		}
-		BSFormRadioGroup<?> radioButtonField = getForm().addRadioInput(getFieldVariableName(field), label, annotation.group());
+		BSFormRadioGroup<?> radioButtonField = getForm().createRadioInput(getFieldVariableName(field), label, annotation.group());
 		radioButtonField.setInput(new InputRadioType<>());
 		radioButtonField.bind(getFieldVariableName(field));
 		if (annotation.required())
@@ -806,7 +806,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 			label = getLabelFromField(field).get()
 			                                .label();
 		}
-		BSFormInputGroup<?, InputSearchType<?>> searchField = getForm().addSearchInput(getFieldVariableName(field), label, true);
+		BSFormInputGroup<?, InputSearchType<?>> searchField = getForm().createSearchInput(getFieldVariableName(field), label, true);
 		searchField.addHelpText(label);
 		searchField.setInput(new InputSearchType<>());
 		searchField.getInput()
@@ -847,6 +847,12 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 		}
 
 		return searchField;
+	}
+
+	@Override
+	public BSFormGroup<?, ?> buildNumberSpinnerField(Field field, NumberSpinnerField annotation, BSFormGroup<?, ?> fieldGroup)
+	{
+		return null;
 	}
 
 	@Override
@@ -897,7 +903,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 			label = getLabelFromField(field).get()
 			                                .label();
 		}
-		BSFormInputGroup<?, InputSelectType<?>> selectGroup = getForm().addSelectDropdown(getFieldVariableName(field), label, true);
+		BSFormInputGroup<?, InputSelectType<?>> selectGroup = getForm().createSelectDropdown(getFieldVariableName(field), label, true);
 		InputSelectType input = new InputSelectType();
 		input.bind(getFieldVariableName(field));
 		selectGroup.setInput(input);
@@ -926,7 +932,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 		}
 		catch (Exception e)
 		{
-			log.log(Level.WARNING, "Unable to generate select list", e);
+			BSQuickForm.log.log(Level.WARNING, "Unable to generate select list", e);
 		}
 		return selectGroup;
 	}
@@ -941,7 +947,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 			                                .label();
 
 		}
-		BSFormInputGroup<?, InputTelephoneType<?>> textInput = getForm().addTelephoneInput(getFieldVariableName(field), label, true);
+		BSFormInputGroup<?, InputTelephoneType<?>> textInput = getForm().createTelephoneInput(getFieldVariableName(field), label, true);
 
 		if (annotation.showControlFeedback())
 		{
@@ -993,7 +999,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 			                                .label();
 
 		}
-		BSFormInputGroup<?, InputTextAreaType<?>> textAreaInput = getForm().addTextArea(getFieldVariableName(field), label, true);
+		BSFormInputGroup<?, InputTextAreaType<?>> textAreaInput = getForm().createTextArea(getFieldVariableName(field), label, true);
 
 		if (annotation.showControlFeedback())
 		{
@@ -1045,7 +1051,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 			                                .label();
 
 		}
-		BSFormInputGroup<?, InputNumberType<?>> numberInput = getForm().addNumberInput(getFieldVariableName(field), label, true);
+		BSFormInputGroup<?, InputNumberType<?>> numberInput = getForm().createNumberInput(getFieldVariableName(field), label, true);
 		if (annotation.showControlFeedback())
 		{
 			numberInput.setStyleInputGroupTextWithValidation(true);
@@ -1106,7 +1112,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 			                                .label();
 
 		}
-		BSFormInputGroup<?, InputNumberType<?>> timeInput = getForm().addNumberInput(getFieldVariableName(field), label, true);
+		BSFormInputGroup<?, InputNumberType<?>> timeInput = getForm().createNumberInput(getFieldVariableName(field), label, true);
 		if (annotation.showControlFeedback())
 		{
 			timeInput.setStyleInputGroupTextWithValidation(true);
@@ -1157,7 +1163,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 			                                .label();
 
 		}
-		BSFormInputGroup<?, InputUrlType<?>> urlInput = getForm().addUrlInput(getFieldVariableName(field), label, true);
+		BSFormInputGroup<?, InputUrlType<?>> urlInput = getForm().createUrlInput(getFieldVariableName(field), label, true);
 		if (annotation.showControlFeedback())
 		{
 			urlInput.setStyleInputGroupTextWithValidation(true);
@@ -1208,7 +1214,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 			                                .label();
 
 		}
-		BSFormGroup<?, InputHiddenType<?>> textInput = getForm().addHiddenInput(getFieldVariableName(field), label);
+		BSFormGroup<?, InputHiddenType<?>> textInput = getForm().createHiddenInput(getFieldVariableName(field), label);
 		textInput.setInput(new InputHiddenType<>());
 		textInput.getInput()
 		         .bind(getFieldVariableName(field));
@@ -1255,7 +1261,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 			                                .label();
 
 		}
-		BSButton<?> button = getForm().addSubmitButton();
+		BSButton<?> button = getForm().createSubmitButton();
 		button.setText(label);
 		if (!annotation.classes()
 		               .isEmpty())
@@ -1280,7 +1286,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 
 		}
 
-		BSButton<?> button = getForm().addCancelButton();
+		BSButton<?> button = getForm().createCancelButton();
 		button.setText(label);
 		if (!annotation.classes()
 		               .isEmpty())
@@ -1305,7 +1311,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 
 		}
 
-		BSButton<?> button = getForm().addResetButton();
+		BSButton<?> button = getForm().createResetButton();
 		button.setText(label);
 		if (!annotation.classes()
 		               .isEmpty())

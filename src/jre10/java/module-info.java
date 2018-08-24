@@ -17,6 +17,7 @@ module com.jwebmp.plugins.bsquickforms4 {
 	requires com.jwebmp.guicedinjection;
 
 	requires java.logging;
+	requires org.apache.commons.text;
 
 	provides IPageConfigurator with QuickFormsPageConfigurator;
 	opens com.jwebmp.plugins.bsquickforms4.annotations.actions to com.fasterxml.jackson.databind, com.jwebmp.core;
