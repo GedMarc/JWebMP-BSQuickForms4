@@ -33,7 +33,7 @@ import javax.validation.constraints.NotNull;
  * @since 25 Mar 2017
  */
 public class QuickFormsPageConfigurator
-		implements IPageConfigurator
+		implements IPageConfigurator<QuickFormsPageConfigurator>
 {
 	/**
 	 * If this configurator is enabled
