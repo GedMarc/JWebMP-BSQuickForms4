@@ -71,7 +71,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 		extends QuickForms<BSFormGroup<?, ?>, J>
 {
 
-	private static final long serialVersionUID = 1L;
+
 	private static final Logger log = LogFactory.getLog("BSQuickForms4");
 
 	/**
