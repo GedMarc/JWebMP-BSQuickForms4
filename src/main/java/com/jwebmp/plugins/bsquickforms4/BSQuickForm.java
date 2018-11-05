@@ -33,6 +33,7 @@ import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.core.utilities.StaticStrings;
 import com.jwebmp.guicedinjection.GuiceContext;
 import com.jwebmp.logger.LogFactory;
+import com.jwebmp.plugins.bootstrap.switch4.BSSwitch4;
 import com.jwebmp.plugins.bootstrap4.buttons.BSButton;
 import com.jwebmp.plugins.bootstrap4.forms.BSForm;
 import com.jwebmp.plugins.bootstrap4.forms.groups.BSFormGroup;
@@ -40,7 +41,6 @@ import com.jwebmp.plugins.bootstrap4.forms.groups.enumerations.BSFormGroupOption
 import com.jwebmp.plugins.bootstrap4.forms.groups.sets.BSFormCheckGroup;
 import com.jwebmp.plugins.bootstrap4.forms.groups.sets.BSFormInputGroup;
 import com.jwebmp.plugins.bootstrap4.forms.groups.sets.BSFormRadioGroup;
-import com.jwebmp.plugins.bootstraptoggle.BSToggle;
 import com.jwebmp.plugins.bs4datetimepicker.BS4DateTimePicker;
 import com.jwebmp.plugins.bsquickforms4.annotations.implementations.*;
 import com.jwebmp.plugins.quickforms.QuickForms;
@@ -858,7 +858,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 	@Override
 	public BSFormGroup buildSwitchField(Field field, SwitchField annotation, BSFormGroup fieldGroup)
 	{
-		BSToggle input = new BSToggle();
+		BSSwitch4 input = new BSSwitch4();
 		if (getLabelFromField(field).isPresent())
 		{
 			String label = getLabelFromField(field).get()
