@@ -94,7 +94,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 		Class fieldType = field.getType();
 		String typeName = fieldType.getSimpleName();
 
-		BSFormGroup group = null;
+		BSFormGroup<?, ?> group = null;
 		if (fieldType.isEnum())
 		{
 			typeName = "Enum";
