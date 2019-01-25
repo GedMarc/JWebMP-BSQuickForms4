@@ -1,7 +1,7 @@
 import com.jwebmp.core.services.IPageConfigurator;
 import com.jwebmp.guicedinjection.interfaces.IGuiceScanJarExclusions;
 import com.jwebmp.guicedinjection.interfaces.IGuiceScanModuleExclusions;
-import com.jwebmp.plugins.bsquickforms4.QuickFormsPageConfigurator;
+import com.jwebmp.plugins.bsquickforms4.BSQuickFormsPageConfigurator;
 import com.jwebmp.plugins.bsquickforms4.implementations.BSQuickForms4ExclusionsModule;
 
 module com.jwebmp.plugins.bsquickforms4 {
@@ -23,7 +23,7 @@ module com.jwebmp.plugins.bsquickforms4 {
 	requires org.apache.commons.text;
 	requires com.jwebmp.core.angularjs;
 
-	provides IPageConfigurator with QuickFormsPageConfigurator;
+	provides IPageConfigurator with BSQuickFormsPageConfigurator;
 
 	provides IGuiceScanModuleExclusions with BSQuickForms4ExclusionsModule;
 	provides IGuiceScanJarExclusions with BSQuickForms4ExclusionsModule;

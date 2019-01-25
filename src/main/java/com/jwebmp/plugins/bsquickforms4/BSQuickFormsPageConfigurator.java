@@ -32,8 +32,8 @@ import javax.validation.constraints.NotNull;
  * @author GedMarc
  * @since 25 Mar 2017
  */
-public class QuickFormsPageConfigurator
-		implements IPageConfigurator<QuickFormsPageConfigurator>
+public class BSQuickFormsPageConfigurator
+		implements IPageConfigurator<BSQuickFormsPageConfigurator>
 {
 	/**
 	 * If this configurator is enabled
@@ -41,9 +41,9 @@ public class QuickFormsPageConfigurator
 	private static boolean enabled = true;
 
 	/*
-	 * Constructs a new QuickFormsPageConfigurator
+	 * Constructs a new BSQuickFormsPageConfigurator
 	 */
-	public QuickFormsPageConfigurator()
+	public BSQuickFormsPageConfigurator()
 	{
 		//Nothing needed
 	}
@@ -57,7 +57,7 @@ public class QuickFormsPageConfigurator
 	 */
 	public static boolean isEnabled()
 	{
-		return QuickFormsPageConfigurator.enabled;
+		return BSQuickFormsPageConfigurator.enabled;
 	}
 
 	/**
@@ -70,7 +70,7 @@ public class QuickFormsPageConfigurator
 	 */
 	public static void setEnabled(boolean mustEnable)
 	{
-		QuickFormsPageConfigurator.enabled = mustEnable;
+		BSQuickFormsPageConfigurator.enabled = mustEnable;
 	}
 
 	@NotNull
@@ -87,6 +87,6 @@ public class QuickFormsPageConfigurator
 	@Override
 	public boolean enabled()
 	{
-		return QuickFormsPageConfigurator.enabled;
+		return BSQuickFormsPageConfigurator.enabled;
 	}
 }
