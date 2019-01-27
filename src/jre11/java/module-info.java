@@ -1,9 +1,3 @@
-import com.jwebmp.core.services.IPageConfigurator;
-import com.jwebmp.guicedinjection.interfaces.IGuiceScanJarExclusions;
-import com.jwebmp.guicedinjection.interfaces.IGuiceScanModuleExclusions;
-import com.jwebmp.plugins.bsquickforms4.BSQuickFormsPageConfigurator;
-import com.jwebmp.plugins.bsquickforms4.implementations.BSQuickForms4ExclusionsModule;
-
 module com.jwebmp.plugins.bsquickforms4 {
 	exports com.jwebmp.plugins.bsquickforms4;
 
@@ -23,10 +17,10 @@ module com.jwebmp.plugins.bsquickforms4 {
 	requires org.apache.commons.text;
 	requires com.jwebmp.core.angularjs;
 
-	provides IPageConfigurator with BSQuickFormsPageConfigurator;
+	provides com.jwebmp.core.services.IPageConfigurator with com.jwebmp.plugins.bsquickforms4.BSQuickFormsPageConfigurator;
 
-	provides IGuiceScanModuleExclusions with BSQuickForms4ExclusionsModule;
-	provides IGuiceScanJarExclusions with BSQuickForms4ExclusionsModule;
+	provides com.jwebmp.guicedinjection.interfaces.IGuiceScanModuleExclusions with com.jwebmp.plugins.bsquickforms4.implementations.BSQuickForms4ExclusionsModule;
+	provides com.jwebmp.guicedinjection.interfaces.IGuiceScanJarExclusions with com.jwebmp.plugins.bsquickforms4.implementations.BSQuickForms4ExclusionsModule;
 
 	opens com.jwebmp.plugins.bsquickforms4.annotations.actions to com.fasterxml.jackson.databind, com.jwebmp.core;
 	opens com.jwebmp.plugins.bsquickforms4.annotations.implementations to com.fasterxml.jackson.databind, com.jwebmp.core;
