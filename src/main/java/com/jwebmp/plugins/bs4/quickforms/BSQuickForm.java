@@ -20,7 +20,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jwebmp.plugins.bsquickforms4;
+package com.jwebmp.plugins.bs4.quickforms;
 
 import com.jwebmp.core.base.ComponentHierarchyBase;
 import com.jwebmp.core.base.angular.forms.enumerations.InputErrorValidations;
@@ -33,7 +33,6 @@ import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.core.utilities.StaticStrings;
 import com.jwebmp.guicedinjection.GuiceContext;
 import com.jwebmp.logger.LogFactory;
-import com.jwebmp.plugins.bootstrap.switch4.BSSwitch4;
 import com.jwebmp.plugins.bootstrap4.buttons.BSButton;
 import com.jwebmp.plugins.bootstrap4.forms.BSForm;
 import com.jwebmp.plugins.bootstrap4.forms.groups.BSFormGroup;
@@ -41,8 +40,9 @@ import com.jwebmp.plugins.bootstrap4.forms.groups.enumerations.BSFormGroupOption
 import com.jwebmp.plugins.bootstrap4.forms.groups.sets.BSFormCheckGroup;
 import com.jwebmp.plugins.bootstrap4.forms.groups.sets.BSFormInputGroup;
 import com.jwebmp.plugins.bootstrap4.forms.groups.sets.BSFormRadioGroup;
-import com.jwebmp.plugins.bs4datetimepicker.BS4DateTimePicker;
-import com.jwebmp.plugins.bsquickforms4.annotations.implementations.*;
+import com.jwebmp.plugins.bs4.datetimepicker.BS4DateTimePicker;
+import com.jwebmp.plugins.bs4.quickforms.annotations.implementations.*;
+import com.jwebmp.plugins.bs4.toggle.BSSwitch4;
 import com.jwebmp.plugins.quickforms.QuickForms;
 import com.jwebmp.plugins.quickforms.annotations.*;
 import com.jwebmp.plugins.quickforms.annotations.states.WebReadOnly;

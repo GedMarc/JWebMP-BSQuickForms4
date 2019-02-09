@@ -1,18 +1,12 @@
-package com.jwebmp.plugins.bsquickforms4.annotations.implementations;
+package com.jwebmp.plugins.bs4.quickforms.annotations.implementations;
 
-import com.jwebmp.plugins.quickforms.annotations.SelectField;
+import com.jwebmp.plugins.quickforms.annotations.TextField;
 
 import java.lang.annotation.Annotation;
 
-public class DefaultSelectField
-		implements SelectField
+public class DefaultTextField
+		implements TextField
 {
-
-	@Override
-	public boolean multiple()
-	{
-		return false;
-	}
 
 	@Override
 	public String style()
@@ -24,6 +18,24 @@ public class DefaultSelectField
 	public String classes()
 	{
 		return "";
+	}
+
+	@Override
+	public String placeholder()
+	{
+		return "";
+	}
+
+	@Override
+	public int minLength()
+	{
+		return 0;
+	}
+
+	@Override
+	public int maxLength()
+	{
+		return 250;
 	}
 
 	@Override
@@ -65,6 +77,6 @@ public class DefaultSelectField
 	@Override
 	public Class<? extends Annotation> annotationType()
 	{
-		return SelectField.class;
+		return TextField.class;
 	}
 }

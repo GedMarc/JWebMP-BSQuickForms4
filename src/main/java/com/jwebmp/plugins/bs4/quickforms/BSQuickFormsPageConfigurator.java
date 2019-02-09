@@ -20,7 +20,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.jwebmp.plugins.bsquickforms4;
+package com.jwebmp.plugins.bs4.quickforms;
 
 import com.jwebmp.core.Page;
 import com.jwebmp.core.base.angular.AngularPageConfigurator;
@@ -77,7 +77,7 @@ public class BSQuickFormsPageConfigurator
 	@Override
 	public Page configure(Page page)
 	{
-		if (!page.isConfigured())
+		if (!page.isConfigured() && enabled())
 		{
 			AngularPageConfigurator.setRequired(true);
 		}

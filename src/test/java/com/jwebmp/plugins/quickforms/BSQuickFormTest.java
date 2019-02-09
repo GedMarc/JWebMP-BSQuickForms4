@@ -1,7 +1,7 @@
 package com.jwebmp.plugins.quickforms;
 
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
-import com.jwebmp.plugins.bsquickforms4.BSQuickForm;
+import com.jwebmp.plugins.bs4.quickforms.BSQuickForm;
 import com.jwebmp.plugins.quickforms.annotations.TextField;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

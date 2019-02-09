@@ -2,7 +2,7 @@ import com.jwebmp.core.services.IPageConfigurator;
 import com.jwebmp.guicedinjection.interfaces.IGuiceScanJarExclusions;
 import com.jwebmp.guicedinjection.interfaces.IGuiceScanModuleExclusions;
 import com.jwebmp.plugins.bsquickforms4.QuickFormsPageConfigurator;
-import com.jwebmp.plugins.bsquickforms4.implementations.BSQuickForms4ExclusionsModule;
+import com.jwebmp.plugins.bs4.quickforms.implementations.BSQuickForms4ExclusionsModule;
 
 module com.jwebmp.plugins.bsquickforms4 {
 	exports com.jwebmp.plugins.bsquickforms4;
@@ -27,7 +27,7 @@ module com.jwebmp.plugins.bsquickforms4 {
 	provides IGuiceScanModuleExclusions with BSQuickForms4ExclusionsModule;
 	provides IGuiceScanJarExclusions with BSQuickForms4ExclusionsModule;
 
-	opens com.jwebmp.plugins.bsquickforms4.annotations.actions to com.fasterxml.jackson.databind, com.jwebmp.core;
-	opens com.jwebmp.plugins.bsquickforms4.annotations.implementations to com.fasterxml.jackson.databind, com.jwebmp.core;
+	opens com.jwebmp.plugins.bs4.quickforms.annotations.actions to com.fasterxml.jackson.databind, com.jwebmp.core;
+	opens com.jwebmp.plugins.bs4.quickforms.annotations.implementations to com.fasterxml.jackson.databind, com.jwebmp.core;
 	opens com.jwebmp.plugins.bsquickforms4 to com.fasterxml.jackson.databind, com.jwebmp.core;
 }

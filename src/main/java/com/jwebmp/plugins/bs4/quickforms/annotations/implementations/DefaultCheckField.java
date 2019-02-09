@@ -1,4 +1,4 @@
-package com.jwebmp.plugins.bsquickforms4.annotations.implementations;
+package com.jwebmp.plugins.bs4.quickforms.annotations.implementations;
 
 import com.jwebmp.plugins.quickforms.annotations.CheckboxField;
 

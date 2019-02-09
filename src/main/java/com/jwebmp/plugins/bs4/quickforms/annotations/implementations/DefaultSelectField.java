@@ -1,12 +1,18 @@
-package com.jwebmp.plugins.bsquickforms4.annotations.implementations;
+package com.jwebmp.plugins.bs4.quickforms.annotations.implementations;
 
-import com.jwebmp.plugins.quickforms.annotations.NumberField;
+import com.jwebmp.plugins.quickforms.annotations.SelectField;
 
 import java.lang.annotation.Annotation;
 
-public class DefaultNumberField
-		implements NumberField
+public class DefaultSelectField
+		implements SelectField
 {
+
+	@Override
+	public boolean multiple()
+	{
+		return false;
+	}
 
 	@Override
 	public String style()
@@ -39,18 +45,6 @@ public class DefaultNumberField
 	}
 
 	@Override
-	public int minimumValue()
-	{
-		return 0;
-	}
-
-	@Override
-	public int maximumValue()
-	{
-		return 100;
-	}
-
-	@Override
 	public boolean showControlFeedback()
 	{
 		return false;
@@ -71,6 +65,6 @@ public class DefaultNumberField
 	@Override
 	public Class<? extends Annotation> annotationType()
 	{
-		return NumberField.class;
+		return SelectField.class;
 	}
 }
