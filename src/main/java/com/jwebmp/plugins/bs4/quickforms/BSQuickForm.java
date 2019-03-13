@@ -1268,7 +1268,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 		{
 			button.addClass(annotation.classes());
 		}
-		ClickAdapter adapter = GuiceContext.getInstance(annotation.eventClass());
+		ClickAdapter adapter = GuiceContext.get(annotation.eventClass());
 		adapter.setComponent(button);
 		button.addEvent(adapter);
 
@@ -1293,7 +1293,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 		{
 			button.addClass(annotation.classes());
 		}
-		ClickAdapter adapter = GuiceContext.getInstance(annotation.eventClass());
+		ClickAdapter adapter = GuiceContext.get(annotation.eventClass());
 		adapter.setComponent(button);
 		button.addEvent(adapter);
 
@@ -1318,7 +1318,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 		{
 			button.addClass(annotation.classes());
 		}
-		ClickAdapter adapter = GuiceContext.getInstance(annotation.eventClass());
+		ClickAdapter adapter = GuiceContext.get(annotation.eventClass());
 		adapter.setComponent(button);
 		button.addEvent(adapter);
 
