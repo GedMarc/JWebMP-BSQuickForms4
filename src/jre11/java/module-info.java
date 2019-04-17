@@ -1,5 +1,3 @@
-import com.jwebmp.plugins.bs4.quickforms.BSQuickFormsPageConfigurator;
-
 module com.jwebmp.plugins.bs4.quickforms {
 	exports com.jwebmp.plugins.bs4.quickforms;
 	exports com.jwebmp.plugins.bs4.quickforms.annotations.implementations;
@@ -21,7 +19,7 @@ module com.jwebmp.plugins.bs4.quickforms {
 	requires org.apache.commons.text;
 	requires com.jwebmp.core.angularjs;
 
-	provides com.jwebmp.core.services.IPageConfigurator with BSQuickFormsPageConfigurator;
+	provides com.jwebmp.core.services.IPageConfigurator with com.jwebmp.plugins.bs4.quickforms.BSQuickFormsPageConfigurator;
 
 	provides com.jwebmp.guicedinjection.interfaces.IGuiceScanModuleExclusions with com.jwebmp.plugins.bs4.quickforms.implementations.BSQuickForms4ExclusionsModule;
 	provides com.jwebmp.guicedinjection.interfaces.IGuiceScanJarExclusions with com.jwebmp.plugins.bs4.quickforms.implementations.BSQuickForms4ExclusionsModule;
