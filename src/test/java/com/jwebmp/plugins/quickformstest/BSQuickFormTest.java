@@ -1,4 +1,4 @@
-package com.jwebmp.plugins.quickforms;
+package com.jwebmp.plugins.quickformstest;
 
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
 import com.jwebmp.plugins.bs4.quickforms.BSQuickForm;
