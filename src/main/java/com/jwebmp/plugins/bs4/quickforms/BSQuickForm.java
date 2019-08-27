@@ -37,9 +37,9 @@ import com.jwebmp.plugins.bootstrap4.buttons.BSButton;
 import com.jwebmp.plugins.bootstrap4.forms.BSForm;
 import com.jwebmp.plugins.bootstrap4.forms.groups.BSFormGroup;
 import com.jwebmp.plugins.bootstrap4.forms.groups.enumerations.BSFormGroupOptions;
-import com.jwebmp.plugins.bootstrap4.forms.groups.sets.BSFormCheckGroup;
+import com.jwebmp.plugins.bootstrap4.buttons.checkbox.BSCheckBoxGroup;
 import com.jwebmp.plugins.bootstrap4.forms.groups.sets.BSFormInputGroup;
-import com.jwebmp.plugins.bootstrap4.forms.groups.sets.BSFormRadioGroup;
+import com.jwebmp.plugins.bootstrap4.buttons.radio.BSRadioButtonGroup;
 import com.jwebmp.plugins.bs4.datetimepicker.BS4DateTimePicker;
 import com.jwebmp.plugins.bs4.quickforms.annotations.implementations.*;
 import com.jwebmp.plugins.bs4.toggle.BSSwitch4;
@@ -663,7 +663,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 			label = getLabelFromField(field).get()
 			                                .label();
 		}
-		BSFormCheckGroup<?> checkboxField = getForm().createCheckboxInput(getFieldVariableName(field), label);
+		BSCheckBoxGroup<?> checkboxField = getForm().createCheckboxInput(getFieldVariableName(field), label);
 		checkboxField.setInput(new InputCheckBoxType<>());
 		checkboxField.getInput()
 		             .bind(getFieldVariableName(field));
@@ -761,7 +761,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 			label = getLabelFromField(field).get()
 			                                .label();
 		}
-		BSFormRadioGroup<?> radioButtonField = getForm().createRadioInput(getFieldVariableName(field), label, annotation.group());
+		BSRadioButtonGroup<?> radioButtonField = getForm().createRadioInput(getFieldVariableName(field), label, annotation.group());
 		radioButtonField.setInput(new InputRadioType<>());
 		radioButtonField.bind(getFieldVariableName(field));
 		if (annotation.required())
