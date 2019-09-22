@@ -21,45 +21,45 @@
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-        </dependency>
+            <artifactId>junit-jupiter-api</artifactId><type>jar</type>
+            </dependency>
         <dependency>
             <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-        </dependency>
+            <artifactId>assertj-core</artifactId><type>jar</type>
+            </dependency>
         <dependency>
             <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-        </dependency>
+            <artifactId>mockito-core</artifactId><type>jar</type>
+            </dependency>
         <dependency>
             <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-all</artifactId>
-        </dependency>
+            <artifactId>hamcrest-all</artifactId><type>jar</type>
+            </dependency>
 
         <dependency>
             <groupId>com.jwebmp.plugins.bootstrap</groupId>
-            <artifactId>jwebmp-bootstrap-toggle</artifactId>
-        </dependency>
+            <artifactId>jwebmp-bootstrap-toggle</artifactId><type>jar</type>
+            </dependency>
         <dependency>
             <groupId>com.jwebmp.plugins.bootstrap</groupId>
-            <artifactId>jwebmp-bootstrap-date-time-picker</artifactId>
-        </dependency>
+            <artifactId>jwebmp-bootstrap-date-time-picker</artifactId><type>jar</type>
+            </dependency>
         <dependency>
             <groupId>com.jwebmp.plugins.forms</groupId>
-            <artifactId>jwebmp-quickforms</artifactId>
-        </dependency>
+            <artifactId>jwebmp-quickforms</artifactId><type>jar</type>
+            </dependency>
         <dependency>
             <groupId>com.jwebmp.plugins.angular</groupId>
-            <artifactId>jwebmp-angular-pretty-checkboxes</artifactId>
-        </dependency>
+            <artifactId>jwebmp-angular-pretty-checkboxes</artifactId><type>jar</type>
+            </dependency>
         <dependency>
             <groupId>com.jwebmp.plugins.forms</groupId>
-            <artifactId>jwebmp-smart-wizard</artifactId>
-        </dependency>
+            <artifactId>jwebmp-smart-wizard</artifactId><type>jar</type>
+            </dependency>
         <dependency>
             <groupId>com.jwebmp.plugins.angular</groupId>
-            <artifactId>jwebmp-angular-file-upload</artifactId>
-        </dependency>
+            <artifactId>jwebmp-angular-file-upload</artifactId><type>jar</type>
+            </dependency>
     </dependencies>
 
     <scm>
