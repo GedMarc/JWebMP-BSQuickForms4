@@ -22,7 +22,6 @@ module com.jwebmp.plugins.bs4.quickforms {
 	provides com.jwebmp.core.services.IPageConfigurator with com.jwebmp.plugins.bs4.quickforms.BSQuickFormsPageConfigurator;
 
 	provides com.guicedee.guicedinjection.interfaces.IGuiceScanModuleExclusions with com.jwebmp.plugins.bs4.quickforms.implementations.BSQuickForms4ExclusionsModule;
-	provides com.guicedee.guicedinjection.interfaces.IGuiceScanJarExclusions with com.jwebmp.plugins.bs4.quickforms.implementations.BSQuickForms4ExclusionsModule;
 
 	opens com.jwebmp.plugins.bs4.quickforms.annotations.actions to com.fasterxml.jackson.databind, com.jwebmp.core;
 	opens com.jwebmp.plugins.bs4.quickforms.annotations.implementations to com.fasterxml.jackson.databind, com.jwebmp.core;
