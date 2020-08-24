@@ -59,6 +59,8 @@ import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static com.guicedee.guicedinjection.json.StaticStrings.STRING_DOT;
+
 /**
  * The Bootstrap 4 Implementation of the Quick Forms API
  *
@@ -865,7 +867,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 			                                       .label();
 			input.setOnText(label);
 		}
-		input.bind(getID() + StaticStrings.STRING_DOT + field.getName());
+		input.bind(getID() + STRING_DOT + field.getName());
 		fieldGroup.setInput(input);
 
 		if (annotation.required())
