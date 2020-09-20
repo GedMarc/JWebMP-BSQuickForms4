@@ -22,32 +22,26 @@
         <dependency>
             <groupId>com.jwebmp.plugins.bootstrap</groupId>
             <artifactId>jwebmp-bootstrap-toggle</artifactId>
-            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>com.jwebmp.plugins.bootstrap</groupId>
             <artifactId>jwebmp-bootstrap-date-time-picker</artifactId>
-            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>com.jwebmp.plugins.forms</groupId>
             <artifactId>jwebmp-quickforms</artifactId>
-            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>com.jwebmp.plugins.angular</groupId>
             <artifactId>jwebmp-angular-pretty-checkboxes</artifactId>
-            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>com.jwebmp.plugins.forms</groupId>
             <artifactId>jwebmp-smart-wizard</artifactId>
-            <type>jar</type>
         </dependency>
         <dependency>
             <groupId>com.jwebmp.plugins.angular</groupId>
             <artifactId>jwebmp-angular-file-upload</artifactId>
-            <type>jar</type>
         </dependency>
     </dependencies>
 
