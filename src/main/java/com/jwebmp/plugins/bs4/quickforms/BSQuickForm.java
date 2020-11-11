@@ -49,7 +49,7 @@ import com.jwebmp.plugins.quickforms.annotations.states.WebReadOnly;
 import com.jwebmp.plugins.quickforms.annotations.states.WebReadOnlyPlainText;
 import org.apache.commons.text.StringEscapeUtils;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.HashMap;
