@@ -6,7 +6,7 @@ module com.jwebmp.plugins.bs4.quickforms {
 	requires com.jwebmp.core;
 	requires com.guicedee.logmaster;
 
-	requires java.validation;
+	requires jakarta.validation;
 
 	requires com.jwebmp.plugins.bootstrap4;
 	requires com.jwebmp.plugins.quickforms;
