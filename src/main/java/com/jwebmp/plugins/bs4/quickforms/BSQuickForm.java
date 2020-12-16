@@ -30,6 +30,7 @@ import com.jwebmp.core.base.html.Label;
 import com.jwebmp.core.base.html.inputs.*;
 import com.jwebmp.core.events.click.ClickAdapter;
 import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
+import com.jwebmp.core.plugins.ComponentInformation;
 import com.jwebmp.core.utilities.StaticStrings;
 import com.guicedee.guicedinjection.GuiceContext;
 import com.guicedee.logger.LogFactory;
@@ -69,6 +70,7 @@ import static com.guicedee.guicedinjection.json.StaticStrings.STRING_DOT;
  * @author GedMarc
  * @since 25 Mar 2017
  */
+@ComponentInformation(name = "Bootstrap QuickForm",description = "The implementation of the quick form for Bootstrap")
 public class BSQuickForm<J extends BSQuickForm<J>>
 		extends QuickForms<BSFormGroup<?, ?>, J>
 {
@@ -93,7 +95,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 	@Override
 	protected void processDefaults(Field field, BSFormGroup<?, ?> groupContent)
 	{
-		Class fieldType = field.getType();
+		Class<?> fieldType = field.getType();
 		String typeName = fieldType.getSimpleName();
 
 		BSFormGroup<?, ?> group = null;
@@ -161,7 +163,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 	}
 
 	@Override
-	public BSFormGroup buildTextField(Field field, TextField annotation, BSFormGroup fieldGroup)
+	public BSFormInputGroup<?,InputTextType<?>> buildTextField(Field field, TextField annotation, BSFormGroup fieldGroup)
 	{
 		String label = null;
 		if (getLabelFromField(field).isPresent())
@@ -334,7 +336,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 	}
 
 	@Override
-	public BS4DateTimePicker buildDateTimePicker(Field field, DateTimePickerField annotation, BSFormGroup fieldGroup)
+	public BS4DateTimePicker<?> buildDateTimePicker(Field field, DateTimePickerField annotation, BSFormGroup fieldGroup)
 	{
 		String label = null;
 		if (getLabelFromField(field).isPresent())
@@ -436,7 +438,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 	}
 
 	@Override
-	public BSFormGroup buildEmailField(Field field, EmailField annotation, BSFormGroup fieldGroup)
+	public BSFormInputGroup<?, InputEmailType<?>> buildEmailField(Field field, EmailField annotation, BSFormGroup fieldGroup)
 	{
 		String label = null;
 		if (getLabelFromField(field).isPresent())
@@ -558,7 +560,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 	}
 
 	@Override
-	public BSFormGroup buildPasswordField(Field field, PasswordField annotation, BSFormGroup fieldGroup)
+	public BSFormInputGroup<?, InputPasswordType<?>> buildPasswordField(Field field, PasswordField annotation, BSFormGroup fieldGroup)
 	{
 		String label = null;
 		if (getLabelFromField(field).isPresent())
@@ -607,7 +609,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 	}
 
 	@Override
-	public BSFormGroup buildColourField(Field field, ColorField annotation, BSFormGroup fieldGroup)
+	public BSFormInputGroup<?, InputColourType<?>> buildColourField(Field field, ColorField annotation, BSFormGroup fieldGroup)
 	{
 		String label = null;
 		if (getLabelFromField(field).isPresent())
@@ -657,7 +659,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 	}
 
 	@Override
-	public BSFormGroup<?, ?> buildCheckboxField(Field field, CheckboxField annotation, BSFormGroup<?, ?> fieldGroup)
+	public BSCheckBoxGroup<?> buildCheckboxField(Field field, CheckboxField annotation, BSFormGroup<?, ?> fieldGroup)
 	{
 		String label = null;
 		if (getLabelFromField(field).isPresent())
@@ -755,7 +757,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 	}
 
 	@Override
-	public BSFormGroup buildRadioField(Field field, RadioField annotation, BSFormGroup fieldGroup)
+	public BSRadioButtonGroup<?>  buildRadioField(Field field, RadioField annotation, BSFormGroup fieldGroup)
 	{
 		String label = null;
 		if (getLabelFromField(field).isPresent())
@@ -800,7 +802,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 	}
 
 	@Override
-	public BSFormGroup buildSearchField(Field field, SearchField annotation, BSFormGroup fieldGroup)
+	public BSFormInputGroup<?, InputSearchType<?>> buildSearchField(Field field, SearchField annotation, BSFormGroup fieldGroup)
 	{
 		String label = null;
 		if (getLabelFromField(field).isPresent())
@@ -896,7 +898,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 	}
 
 	@Override
-	public BSFormGroup buildSelectField(Field field, SelectField annotation, BSFormGroup fieldGroup)
+	public BSFormInputGroup<?, InputSelectType<?>> buildSelectField(Field field, SelectField annotation, BSFormGroup fieldGroup)
 	{
 		field.setAccessible(true);
 		String label = null;
@@ -940,7 +942,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 	}
 
 	@Override
-	public BSFormGroup buildTelephoneField(Field field, TelephoneField annotation, BSFormGroup fieldGroup)
+	public BSFormInputGroup<?, InputTelephoneType<?>> buildTelephoneField(Field field, TelephoneField annotation, BSFormGroup fieldGroup)
 	{
 		String label = null;
 		if (getLabelFromField(field).isPresent())
@@ -1044,7 +1046,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 	}
 
 	@Override
-	public BSFormGroup buildNumberField(Field field, NumberField annotation, BSFormGroup fieldGroup)
+	public BSFormInputGroup<?, InputNumberType<?>> buildNumberField(Field field, NumberField annotation, BSFormGroup fieldGroup)
 	{
 		String label = null;
 		if (getLabelFromField(field).isPresent())
@@ -1105,7 +1107,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 	}
 
 	@Override
-	public BSFormGroup buildTimeField(Field field, TimePickerField annotation, BSFormGroup fieldGroup)
+	public BSFormInputGroup<?, InputNumberType<?>> buildTimeField(Field field, TimePickerField annotation, BSFormGroup fieldGroup)
 	{
 		String label = null;
 		if (getLabelFromField(field).isPresent())
@@ -1156,7 +1158,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 	}
 
 	@Override
-	public BSFormGroup buildUrlField(Field field, UrlField annotation, BSFormGroup fieldGroup)
+	public BSFormInputGroup<?, InputUrlType<?>> buildUrlField(Field field, UrlField annotation, BSFormGroup fieldGroup)
 	{
 		String label = null;
 		if (getLabelFromField(field).isPresent())
@@ -1207,7 +1209,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 	}
 
 	@Override
-	public BSFormGroup buildHiddenField(Field field, HiddenField annotation, BSFormGroup fieldGroup)
+	public BSFormGroup<?, InputHiddenType<?>> buildHiddenField(Field field, HiddenField annotation, BSFormGroup fieldGroup)
 	{
 		String label = null;
 		if (getLabelFromField(field).isPresent())
@@ -1254,7 +1256,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 	}
 
 	@Override
-	public ComponentHierarchyBase buildSubmitButton(Field field, SubmitButtonField annotation, BSFormGroup fieldGroup)
+	public BSButton<?> buildSubmitButton(Field field, SubmitButtonField annotation, BSFormGroup fieldGroup)
 	{
 		String label = null;
 		if (getLabelFromField(field).isPresent())
@@ -1278,7 +1280,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 	}
 
 	@Override
-	public ComponentHierarchyBase buildCancelButton(Field field, CancelButtonField annotation, BSFormGroup fieldGroup)
+	public BSButton<?> buildCancelButton(Field field, CancelButtonField annotation, BSFormGroup fieldGroup)
 	{
 		String label = null;
 		if (getLabelFromField(field).isPresent())
@@ -1303,7 +1305,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 	}
 
 	@Override
-	public ComponentHierarchyBase buildResetButton(Field field, ResetButtonField annotation, BSFormGroup fieldGroup)
+	public BSButton<?> buildResetButton(Field field, ResetButtonField annotation, BSFormGroup fieldGroup)
 	{
 		String label = null;
 		if (getLabelFromField(field).isPresent())

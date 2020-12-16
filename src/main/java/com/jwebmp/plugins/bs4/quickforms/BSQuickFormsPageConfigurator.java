@@ -24,6 +24,8 @@ package com.jwebmp.plugins.bs4.quickforms;
 
 import com.jwebmp.core.Page;
 import com.jwebmp.core.base.angular.AngularPageConfigurator;
+import com.jwebmp.core.plugins.PluginInformation;
+import com.jwebmp.core.plugins.PluginStatus;
 import com.jwebmp.core.services.IPageConfigurator;
 
 import jakarta.validation.constraints.NotNull;
@@ -32,6 +34,26 @@ import jakarta.validation.constraints.NotNull;
  * @author GedMarc
  * @since 25 Mar 2017
  */
+@PluginInformation(pluginName = "Bootstrap QuickForms",
+		pluginUniqueName = "quickforms-bootstrap",
+		pluginDescription = "Create forms out of objects automatically using annotations,reference any plugin and create automated forms with sending",
+		pluginVersion = "1.0.0",
+		pluginDependancyUniqueIDs = "jquery,google-code-prettify",
+		pluginCategories = "forms,frameworks,ui",
+		pluginSubtitle = "Create forms out of objects automatically using annotations",
+		pluginGitUrl = "https://github.com/GedMarc/JWebMP-BSQuickForms4",
+		pluginSourceUrl = "https://github.com/GedMarc/JWebMP-BSQuickForms4",
+		pluginWikiUrl = "https://github.com/GedMarc/JWebMP-BSQuickForms4/wiki",
+		pluginOriginalHomepage = "http://www.jwebmp.com/",
+		pluginIconUrl = "",
+		pluginIconImageUrl = "",
+		pluginDownloadUrl = "https://mvnrepository.com/artifact/com.jwebmp.plugins.forms/jwebmp-bootstrap-quick-forms",
+		pluginGroupId = "com.jwebmp.plugins.forms",
+		pluginArtifactId = "jwebmp-bootstrap-quick-forms",
+		pluginModuleName = "com.jwebmp.plugins.bs4.quickforms",
+		pluginStatus = PluginStatus.Released,
+		pluginLastUpdatedDate = "2020/12/16"
+)
 public class BSQuickFormsPageConfigurator
 		implements IPageConfigurator<BSQuickFormsPageConfigurator>
 {
