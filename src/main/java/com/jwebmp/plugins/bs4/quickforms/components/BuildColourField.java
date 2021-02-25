@@ -99,7 +99,7 @@ public class BuildColourField implements IAnnotationFieldHandler<ColorField, BSF
             }
             label.setLabel(labelField.value());
         }
-        BSFormInputGroup<?, InputColourType<?>> colourField = formm.getForm().createDateInput()
+        BSFormInputGroup<?, InputColourType<?>> colourField = formm.getForm().createColourInput(formm.getFieldVariableName(field), label.getLabel());
         colourField.setInput(new InputColourType<>());
 
         if(labelField != null) {

@@ -94,7 +94,7 @@ public class BuildDateField implements IAnnotationFieldHandler<DatePickerField, 
             }
             label.setLabel(labelField.value());
         }
-        BSFormInputGroup<?, InputDateType<?>> textInput = new BSFormInputGroup<>();
+        BSFormInputGroup<?, InputDateType<?>> textInput = formm.getForm().createDateInput(formm.getFieldVariableName(field), label.getLabel(), true);
 
         if (annotation.showControlFeedback()) {
             textInput.setStyleInputGroupTextWithValidation(true);
