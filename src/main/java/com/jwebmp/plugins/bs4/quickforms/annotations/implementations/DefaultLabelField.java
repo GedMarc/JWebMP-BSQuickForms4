@@ -9,9 +9,14 @@ public class DefaultLabelField
 {
 
 	@Override
-	public String label()
+	public String value()
 	{
-		return null;
+		return "";
+	}
+
+	@Override
+	public boolean inline() {
+		return false;
 	}
 
 	@Override

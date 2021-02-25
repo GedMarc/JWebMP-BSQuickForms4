@@ -39,6 +39,16 @@ public class DefaultNumberField
 	}
 
 	@Override
+	public int precision() {
+		return 0;
+	}
+
+	@Override
+	public int scale() {
+		return 0;
+	}
+
+	@Override
 	public int minimumValue()
 	{
 		return 0;
