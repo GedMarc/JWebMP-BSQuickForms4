@@ -6,12 +6,14 @@ import com.jwebmp.core.base.html.inputs.InputCheckBoxType;
 import com.jwebmp.core.base.html.inputs.InputTextType;
 import com.jwebmp.plugins.bootstrap4.buttons.checkbox.BSCheckBoxGroup;
 import com.jwebmp.plugins.bootstrap4.forms.BSForm;
+import com.jwebmp.plugins.bootstrap4.forms.BSFormLabel;
 import com.jwebmp.plugins.bootstrap4.forms.groups.enumerations.BSFormGroupOptions;
 import com.jwebmp.plugins.bootstrap4.forms.groups.sets.BSFormInputGroup;
 import com.jwebmp.plugins.bs4.quickforms.BSQuickForm;
 import com.jwebmp.plugins.bs4.quickforms.annotations.implementations.DefaultCheckboxField;
 import com.jwebmp.plugins.quickforms.QuickForms;
 import com.jwebmp.plugins.quickforms.annotations.CheckboxField;
+import com.jwebmp.plugins.quickforms.annotations.ErrorMessages;
 import com.jwebmp.plugins.quickforms.annotations.LabelField;
 import com.jwebmp.plugins.quickforms.annotations.TextField;
 import com.jwebmp.plugins.quickforms.services.IAnnotationFieldHandler;
@@ -30,43 +32,29 @@ public class BuildCheckboxField implements IAnnotationFieldHandler<CheckboxField
 
     @Override
     public BSCheckBoxGroup<?> buildField(QuickForms<?, ?> form, Field field, CheckboxField annotation, BSCheckBoxGroup<?> fieldGroup) {
-
-
-        Label<?> label = new Label<>();
+        BSFormLabel<?> label = new BSFormLabel<>();
         LabelField labelField = form.getLabelFromField(field).orElse(null);
         if (labelField != null)
         {
-            if (!annotation.classes()
+            if (!labelField.classes()
                     .isEmpty())
             {
                 label.addClass(labelField.classes());
             }
-            if (!annotation.style()
+            if (!labelField.style()
                     .isEmpty())
             {
                 label.addStyle(labelField.style());
             }
-            if (annotation.showControlFeedback())
+            if (labelField.showControlFeedback())
             {
                 label.addClass(BSFormGroupOptions.Form_Control_Feedback);
             }
             label.setLabel(labelField.value());
         }
 
-        BSCheckBoxGroup<?> checkboxField =((BSForm<?>)form.getForm()).createCheckboxInput(form.getFieldVariableName(field),null);
+        BSCheckBoxGroup<?> checkboxField =((BSForm<?>)form.getForm()).createCheckboxInput(form.getFieldVariableName(field),label);
         checkboxField.setInput(new InputCheckBoxType<>());
-
-        if(labelField != null) {
-            label.setForInputComponent(checkboxField.getInput());
-            if(labelField.inline())
-            {
-                checkboxField.addClass(Row);
-                checkboxField.getInput().addClass(Col);
-                label.addClass(Col);
-            }
-
-        }
-
 
         checkboxField.getInput()
                 .bind(form.getFieldVariableName(field));
@@ -87,18 +75,17 @@ public class BuildCheckboxField implements IAnnotationFieldHandler<CheckboxField
             checkboxField.getInput()
                     .addStyle(annotation.style());
         }
-        if (!annotation.requiredMessage()
-                .isEmpty())
-        {
-            checkboxField.asMe()
-                    .addMessage(InputErrorValidations.required, annotation.requiredMessage());
+        if (field.isAnnotationPresent(ErrorMessages.class)) {
+            ErrorMessages em = field.getAnnotation(ErrorMessages.class);
+            checkboxField.getMessages().setShowOnEdit(true);
+            checkboxField.getMessages().addMessage(InputErrorValidations.min, em.minMessage(),em.inline());
+            checkboxField.getMessages().addMessage(InputErrorValidations.minLength, em.minLengthMessage(),em.inline());
+            checkboxField.getMessages().addMessage(InputErrorValidations.max, em.maxMessage(),em.inline());
+            checkboxField.getMessages().addMessage(InputErrorValidations.maxLength, em.maxLengthMessage(),em.inline());
+            checkboxField.getMessages().addMessage(InputErrorValidations.pattern, em.patternMessage(),em.inline());
+            checkboxField.getMessages().addMessage(InputErrorValidations.required, em.requiredMessage(),em.inline());
         }
-        if (!annotation.patternMessage()
-                .isEmpty())
-        {
-            checkboxField.asMe()
-                    .addMessage(InputErrorValidations.pattern, annotation.requiredMessage());
-        }
+
         form.setValue(field, checkboxField.getInput());
 
         return checkboxField;

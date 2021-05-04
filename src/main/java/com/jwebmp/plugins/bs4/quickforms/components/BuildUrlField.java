@@ -1,11 +1,16 @@
 package com.jwebmp.plugins.bs4.quickforms.components;
 
+import com.google.common.base.Strings;
 import com.jwebmp.core.base.angular.forms.enumerations.InputErrorValidations;
 import com.jwebmp.core.base.html.inputs.InputTextType;
 import com.jwebmp.core.base.html.inputs.InputUrlType;
+import com.jwebmp.plugins.bootstrap4.forms.BSFormLabel;
+import com.jwebmp.plugins.bootstrap4.forms.groups.enumerations.BSFormGroupOptions;
 import com.jwebmp.plugins.bootstrap4.forms.groups.sets.BSFormInputGroup;
 import com.jwebmp.plugins.bs4.quickforms.BSQuickForm;
 import com.jwebmp.plugins.quickforms.QuickForms;
+import com.jwebmp.plugins.quickforms.annotations.ErrorMessages;
+import com.jwebmp.plugins.quickforms.annotations.LabelField;
 import com.jwebmp.plugins.quickforms.annotations.TextField;
 import com.jwebmp.plugins.quickforms.annotations.UrlField;
 import com.jwebmp.plugins.quickforms.services.IAnnotationFieldHandler;
@@ -48,16 +53,6 @@ public class BuildUrlField implements IAnnotationFieldHandler<UrlField, BSFormIn
             }
 
             @Override
-            public String requiredMessage() {
-                return null;
-            }
-
-            @Override
-            public String patternMessage() {
-                return null;
-            }
-
-            @Override
             public boolean required() {
                 return false;
             }
@@ -83,13 +78,27 @@ public class BuildUrlField implements IAnnotationFieldHandler<UrlField, BSFormIn
     public BSFormInputGroup<?, InputUrlType<?>> buildField(QuickForms<?, ?> form, Field field, UrlField annotation, BSFormInputGroup<?, InputUrlType<?>> fieldGroup) {
 
         BSQuickForm<?> formm = (BSQuickForm<?>) form;
-        String label = null;
-        if (formm.getLabelFromField(field).isPresent())
+        BSFormLabel<?> label = new BSFormLabel<>();
+        LabelField labelField = form.getLabelFromField(field).orElse(null);
+        if (labelField != null)
         {
-            label = formm.getLabelFromField(field).get()
-                    .value();
-
+            if (!labelField.classes()
+                    .isEmpty())
+            {
+                label.addClass(labelField.classes());
+            }
+            if (!labelField.style()
+                    .isEmpty())
+            {
+                label.addStyle(labelField.style());
+            }
+            if (labelField.showControlFeedback())
+            {
+                label.addClass(BSFormGroupOptions.Form_Control_Feedback);
+            }
+            label.setLabel(labelField.value());
         }
+
         BSFormInputGroup<?, InputUrlType<?>> urlInput = formm.getForm().createUrlInput(formm.getFieldVariableName(field), label, true);
         if (annotation.showControlFeedback())
         {
@@ -116,22 +125,28 @@ public class BuildUrlField implements IAnnotationFieldHandler<UrlField, BSFormIn
             urlInput.getInput()
                     .addStyle(annotation.style());
         }
-        if (!annotation.requiredMessage()
-                .isEmpty())
-        {
-            urlInput.asMe()
-                    .addMessage(InputErrorValidations.required, annotation.requiredMessage());
+
+        if (!Strings.isNullOrEmpty(annotation.regexBind())) {
+            urlInput.getInput().addAttribute("ng-pattern", annotation.regexBind());
         }
-        if (!annotation.patternMessage()
-                .isEmpty())
-        {
-            urlInput.asMe()
-                    .addMessage(InputErrorValidations.pattern, annotation.requiredMessage());
+        if (!Strings.isNullOrEmpty(annotation.regex())) {
+            urlInput.getInput().addAttribute("pattern", annotation.regex());
         }
+
+        if (field.isAnnotationPresent(ErrorMessages.class)) {
+            ErrorMessages em = field.getAnnotation(ErrorMessages.class);
+            urlInput.getMessages().setShowOnEdit(true);
+            urlInput.getMessages().addMessage(InputErrorValidations.min, em.minMessage(),em.inline());
+            urlInput.getMessages().addMessage(InputErrorValidations.minLength, em.minLengthMessage(),em.inline());
+            urlInput.getMessages().addMessage(InputErrorValidations.max, em.maxMessage(),em.inline());
+            urlInput.getMessages().addMessage(InputErrorValidations.maxLength, em.maxLengthMessage(),em.inline());
+            urlInput.getMessages().addMessage(InputErrorValidations.pattern, em.patternMessage(),em.inline());
+            urlInput.getMessages().addMessage(InputErrorValidations.required, em.requiredMessage(),em.inline());
+        }
+
         form.setValue(field, urlInput.getInput());
 
         return urlInput;
-
     }
 
 }

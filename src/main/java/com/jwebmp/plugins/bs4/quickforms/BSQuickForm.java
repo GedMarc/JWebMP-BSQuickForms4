@@ -22,46 +22,28 @@
  */
 package com.jwebmp.plugins.bs4.quickforms;
 
-import com.jwebmp.core.Event;
-import com.jwebmp.core.base.ComponentHierarchyBase;
-import com.jwebmp.core.base.angular.forms.enumerations.InputErrorValidations;
-import com.jwebmp.core.base.html.H1;
-import com.jwebmp.core.base.html.H3;
-import com.jwebmp.core.base.html.Label;
-import com.jwebmp.core.base.html.inputs.*;
-import com.jwebmp.core.events.click.ClickAdapter;
-import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
-import com.jwebmp.core.plugins.ComponentInformation;
-import com.jwebmp.core.utilities.StaticStrings;
 import com.guicedee.guicedinjection.GuiceContext;
 import com.guicedee.logger.LogFactory;
+import com.jwebmp.core.Event;
+import com.jwebmp.core.base.html.H1;
+import com.jwebmp.core.base.html.H3;
+import com.jwebmp.core.plugins.ComponentInformation;
 import com.jwebmp.plugins.bootstrap4.buttons.BSButton;
 import com.jwebmp.plugins.bootstrap4.forms.BSForm;
 import com.jwebmp.plugins.bootstrap4.forms.groups.BSFormGroup;
 import com.jwebmp.plugins.bootstrap4.forms.groups.enumerations.BSFormGroupOptions;
-import com.jwebmp.plugins.bootstrap4.buttons.checkbox.BSCheckBoxGroup;
-import com.jwebmp.plugins.bootstrap4.forms.groups.sets.BSFormInputGroup;
-import com.jwebmp.plugins.bootstrap4.buttons.radio.BSRadioButtonGroup;
-import com.jwebmp.plugins.bs4.datetimepicker.BS4DateTimePicker;
-import com.jwebmp.plugins.bs4.quickforms.annotations.implementations.*;
-import com.jwebmp.plugins.bs4.toggle.BSSwitch4;
+import com.jwebmp.plugins.bs4.quickforms.annotations.implementations.DefaultLabelField;
 import com.jwebmp.plugins.quickforms.QuickForms;
 import com.jwebmp.plugins.quickforms.annotations.*;
 import com.jwebmp.plugins.quickforms.annotations.states.WebReadOnly;
-import com.jwebmp.plugins.quickforms.annotations.states.WebReadOnlyPlainText;
-import org.apache.commons.text.StringEscapeUtils;
-
 import jakarta.validation.constraints.NotNull;
+
 import java.lang.reflect.Field;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.ConcurrentSkipListMap;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import static com.guicedee.guicedinjection.json.StaticStrings.STRING_DOT;
+import static com.guicedee.guicedinjection.json.StaticStrings.*;
 
 /**
  * The Bootstrap 4 Implementation of the Quick Forms API
@@ -82,13 +64,15 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 	 */
 	public BSQuickForm(@NotNull Object anything)
 	{
-		this();
-		setObject(anything);
+		this(anything, anything.getClass().getCanonicalName().replace(CHAR_DOT,CHAR_UNDERSCORE));
 	}
 
-	public BSQuickForm()
+	public BSQuickForm(@NotNull Object anything,String formName)
 	{
+		setObject(anything);
 		setForm(new BSForm<>());
+		getForm().setID(formName);
+		getForm().setName(formName);
 	}
 
 	@Override
@@ -186,9 +170,9 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 		return maps;
 	}
 
-	public BSFormGroup buildSubHeaderField(Field field, SubHeaderField annotation, BSFormGroup fieldGroup)
+	public BSFormGroup<?,?> buildSubHeaderField(Field field, SubHeaderField annotation, BSFormGroup<?,?> fieldGroup)
 	{
-		BSFormGroup group = new BSFormGroup();
+		BSFormGroup<?,?> group = new BSFormGroup();
 		H3 label = new H3<>(annotation.label());
 		group.add(label);
 		if (!annotation.classes()
@@ -215,9 +199,9 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 		getForm().setStyleInput(true);
 	}
 
-	public BSFormGroup buildHeaderField(Field field, HeaderField annotation, BSFormGroup fieldGroup)
+	public BSFormGroup<?,?> buildHeaderField(Field field, HeaderField annotation, BSFormGroup<?,?> fieldGroup)
 	{
-		BSFormGroup group = new BSFormGroup();
+		BSFormGroup<?,?> group = new BSFormGroup();
 		H1 label = new H1<>(annotation.label());
 		group.add(label);
 		if (!annotation.classes()
@@ -239,7 +223,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 	}
 
 	@Override
-	public BSButton<?> buildSubmitButton(Field field, SubmitButtonField annotation, BSFormGroup fieldGroup)
+	public BSButton<?> buildSubmitButton(Field field, SubmitButtonField annotation, BSFormGroup<?,?> fieldGroup)
 	{
 		String label = null;
 		if (getLabelFromField(field).isPresent())
@@ -255,7 +239,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 		{
 			button.addClass(annotation.classes());
 		}
-		Event<?,?>  adapter = GuiceContext.get(annotation.eventClass());
+		Event<?,?>  adapter = (Event<?, ?>) GuiceContext.get(annotation.eventClass());
 		adapter.setComponent(button);
 		button.addEvent(adapter);
 
@@ -263,7 +247,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 	}
 
 	@Override
-	public BSButton<?> buildCancelButton(Field field, CancelButtonField annotation, BSFormGroup fieldGroup)
+	public BSButton<?> buildCancelButton(Field field, CancelButtonField annotation, BSFormGroup<?,?> fieldGroup)
 	{
 		String label = null;
 		if (getLabelFromField(field).isPresent())
@@ -279,7 +263,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 		{
 			button.addClass(annotation.classes());
 		}
-		Event<?,?> adapter = GuiceContext.get(annotation.eventClass());
+		Event<?,?> adapter = (Event<?, ?>) GuiceContext.get(annotation.eventClass());
 		adapter.setComponent(button);
 		button.addEvent(adapter);
 
@@ -287,7 +271,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 	}
 
 	@Override
-	public BSButton<?> buildResetButton(Field field, ResetButtonField annotation, BSFormGroup fieldGroup)
+	public BSButton<?> buildResetButton(Field field, ResetButtonField annotation, BSFormGroup<?,?> fieldGroup)
 	{
 		String label = null;
 		if (getLabelFromField(field).isPresent())
@@ -304,7 +288,7 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 		{
 			button.addClass(annotation.classes());
 		}
-		Event<?,?>  adapter = GuiceContext.get(annotation.eventClass());
+		Event<?,?>  adapter = (Event<?, ?>) GuiceContext.get(annotation.eventClass());
 		adapter.setComponent(button);
 		button.addEvent(adapter);
 

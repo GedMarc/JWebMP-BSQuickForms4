@@ -33,17 +33,7 @@ public class BuildHiddenField implements IAnnotationFieldHandler<HiddenField, BS
             public String classes() {
                 return null;
             }
-
-            @Override
-            public String requiredMessage() {
-                return null;
-            }
-
-            @Override
-            public String patternMessage() {
-                return null;
-            }
-
+            
             @Override
             public boolean required() {
                 return false;
@@ -87,18 +77,6 @@ public class BuildHiddenField implements IAnnotationFieldHandler<HiddenField, BS
         {
             textInput.getInput()
                     .addStyle(annotation.style());
-        }
-        if (!annotation.requiredMessage()
-                .isEmpty())
-        {
-            textInput.asMe()
-                    .addMessage(InputErrorValidations.required, annotation.requiredMessage());
-        }
-        if (!annotation.patternMessage()
-                .isEmpty())
-        {
-            textInput.asMe()
-                    .addMessage(InputErrorValidations.pattern, annotation.requiredMessage());
         }
         form.setValue(field, textInput.getInput());
 

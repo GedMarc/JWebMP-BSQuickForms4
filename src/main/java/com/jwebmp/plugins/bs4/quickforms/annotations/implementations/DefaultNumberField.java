@@ -9,6 +9,11 @@ public class DefaultNumberField
 {
 
 	@Override
+	public String placeholder() {
+		return "";
+	}
+
+	@Override
 	public String style()
 	{
 		return "";
@@ -20,17 +25,6 @@ public class DefaultNumberField
 		return "";
 	}
 
-	@Override
-	public String requiredMessage()
-	{
-		return "This field is required";
-	}
-
-	@Override
-	public String patternMessage()
-	{
-		return "Please make sure your entry is correct.";
-	}
 
 	@Override
 	public boolean required()
@@ -58,6 +52,11 @@ public class DefaultNumberField
 	public int maximumValue()
 	{
 		return 100;
+	}
+
+	@Override
+	public double step() {
+		return 0;
 	}
 
 	@Override

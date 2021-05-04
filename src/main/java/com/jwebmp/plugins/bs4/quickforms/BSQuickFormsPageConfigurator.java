@@ -24,6 +24,8 @@ package com.jwebmp.plugins.bs4.quickforms;
 
 import com.jwebmp.core.Page;
 import com.jwebmp.core.base.angular.AngularPageConfigurator;
+import com.jwebmp.core.base.references.CSSReference;
+import com.jwebmp.core.base.references.JavascriptReference;
 import com.jwebmp.core.plugins.PluginInformation;
 import com.jwebmp.core.plugins.PluginStatus;
 import com.jwebmp.core.services.IPageConfigurator;
@@ -102,6 +104,10 @@ public class BSQuickFormsPageConfigurator
 		if (!page.isConfigured() && enabled())
 		{
 			AngularPageConfigurator.setRequired(true);
+			page.getBody().addCssReference(new CSSReference("buttonsSelect", 1.0, "bootstrap-select/css/bootstrap-select.min.css"));
+			page.getBody().addJavaScriptReference(new JavascriptReference("buttonsSelect", 1.0, "bootstrap-select/js/bootstrap-select.min.js"));
+			
+			
 		}
 		return page;
 	}

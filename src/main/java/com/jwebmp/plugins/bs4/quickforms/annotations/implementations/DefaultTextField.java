@@ -37,19 +37,7 @@ public class DefaultTextField
 	{
 		return 250;
 	}
-
-	@Override
-	public String requiredMessage()
-	{
-		return "This field is required";
-	}
-
-	@Override
-	public String patternMessage()
-	{
-		return "Please make sure your entry is correct.";
-	}
-
+	
 	@Override
 	public boolean required()
 	{

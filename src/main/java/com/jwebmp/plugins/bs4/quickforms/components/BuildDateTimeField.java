@@ -1,8 +1,10 @@
 package com.jwebmp.plugins.bs4.quickforms.components;
 
+import com.google.common.base.Strings;
 import com.jwebmp.core.base.angular.forms.enumerations.InputErrorValidations;
 import com.jwebmp.core.base.html.Label;
 import com.jwebmp.core.base.html.inputs.InputDateType;
+import com.jwebmp.plugins.bootstrap4.forms.BSFormLabel;
 import com.jwebmp.plugins.bootstrap4.forms.groups.enumerations.BSFormGroupOptions;
 import com.jwebmp.plugins.bootstrap4.forms.groups.sets.BSFormInputGroup;
 import com.jwebmp.plugins.bs4.datetimepicker.BS4DateTimePicker;
@@ -10,6 +12,7 @@ import com.jwebmp.plugins.bs4.quickforms.BSQuickForm;
 import com.jwebmp.plugins.quickforms.QuickForms;
 import com.jwebmp.plugins.quickforms.annotations.DatePickerField;
 import com.jwebmp.plugins.quickforms.annotations.DateTimePickerField;
+import com.jwebmp.plugins.quickforms.annotations.ErrorMessages;
 import com.jwebmp.plugins.quickforms.annotations.LabelField;
 import com.jwebmp.plugins.quickforms.services.IAnnotationFieldHandler;
 
@@ -42,17 +45,7 @@ public class BuildDateTimeField implements IAnnotationFieldHandler<DateTimePicke
             public boolean showControlFeedback() {
                 return false;
             }
-
-            @Override
-            public String requiredMessage() {
-                return null;
-            }
-
-            @Override
-            public String patternMessage() {
-                return null;
-            }
-
+            
             @Override
             public boolean required() {
                 return false;
@@ -73,21 +66,21 @@ public class BuildDateTimeField implements IAnnotationFieldHandler<DateTimePicke
     @Override
     public BS4DateTimePicker<?> buildField(QuickForms<?, ?> form, Field field, DateTimePickerField annotation, BS4DateTimePicker<?> fieldGroup) {
 
-        Label<?> label = new Label<>();
+        BSFormLabel<?> label = new BSFormLabel<>();
         LabelField labelField = form.getLabelFromField(field).orElse(null);
         if (labelField != null)
         {
-            if (!annotation.classes()
+            if (!labelField.classes()
                     .isEmpty())
             {
                 label.addClass(labelField.classes());
             }
-            if (!annotation.style()
+            if (!labelField.style()
                     .isEmpty())
             {
                 label.addStyle(labelField.style());
             }
-            if (annotation.showControlFeedback())
+            if (labelField.showControlFeedback())
             {
                 label.addClass(BSFormGroupOptions.Form_Control_Feedback);
             }
@@ -99,17 +92,6 @@ public class BuildDateTimeField implements IAnnotationFieldHandler<DateTimePicke
 
         dateTimePicker.getInput()
                 .bind(form.getFieldVariableName(field));
-
-        if(labelField != null) {
-            label.setForInputComponent(dateTimePicker.getInput());
-            if(labelField.inline())
-            {
-                dateTimePicker.addClass(Row);
-                dateTimePicker.getInput().addClass(Col);
-                label.addClass(Col);
-            }
-        }
-
 
         if (annotation.required())
         {
@@ -134,17 +116,22 @@ public class BuildDateTimeField implements IAnnotationFieldHandler<DateTimePicke
             dateTimePicker.getInput()
                     .addStyle(annotation.style());
         }
-        if (!annotation.requiredMessage()
-                .isEmpty())
-        {
-            dateTimePicker.asMe()
-                    .addMessage(InputErrorValidations.required, annotation.requiredMessage());
+        if (!Strings.isNullOrEmpty(annotation.regexBind())) {
+            dateTimePicker.getInput().addAttribute("ng-pattern", annotation.regexBind());
         }
-        if (!annotation.patternMessage()
-                .isEmpty())
-        {
-            dateTimePicker.asMe()
-                    .addMessage(InputErrorValidations.pattern, annotation.requiredMessage());
+        if (!Strings.isNullOrEmpty(annotation.regex())) {
+            dateTimePicker.getInput().addAttribute("pattern", annotation.regex());
+        }
+
+        if (field.isAnnotationPresent(ErrorMessages.class)) {
+            ErrorMessages em = field.getAnnotation(ErrorMessages.class);
+            dateTimePicker.getMessages().setShowOnEdit(true);
+            dateTimePicker.getMessages().addMessage(InputErrorValidations.min, em.minMessage(),em.inline());
+            dateTimePicker.getMessages().addMessage(InputErrorValidations.minLength, em.minLengthMessage(),em.inline());
+            dateTimePicker.getMessages().addMessage(InputErrorValidations.max, em.maxMessage(),em.inline());
+            dateTimePicker.getMessages().addMessage(InputErrorValidations.maxLength, em.maxLengthMessage(),em.inline());
+            dateTimePicker.getMessages().addMessage(InputErrorValidations.pattern, em.patternMessage(),em.inline());
+            dateTimePicker.getMessages().addMessage(InputErrorValidations.required, em.requiredMessage(),em.inline());
         }
         form.setValue(field, dateTimePicker.getInput());
 

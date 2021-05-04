@@ -1,11 +1,16 @@
 package com.jwebmp.plugins.bs4.quickforms.components;
 
+import com.google.common.base.Strings;
 import com.jwebmp.core.base.angular.forms.enumerations.InputErrorValidations;
 import com.jwebmp.core.base.html.inputs.InputTextAreaType;
 import com.jwebmp.core.base.html.inputs.InputTextType;
+import com.jwebmp.plugins.bootstrap4.forms.BSFormLabel;
+import com.jwebmp.plugins.bootstrap4.forms.groups.enumerations.BSFormGroupOptions;
 import com.jwebmp.plugins.bootstrap4.forms.groups.sets.BSFormInputGroup;
 import com.jwebmp.plugins.bs4.quickforms.BSQuickForm;
 import com.jwebmp.plugins.quickforms.QuickForms;
+import com.jwebmp.plugins.quickforms.annotations.ErrorMessages;
+import com.jwebmp.plugins.quickforms.annotations.LabelField;
 import com.jwebmp.plugins.quickforms.annotations.TextAreaField;
 import com.jwebmp.plugins.quickforms.annotations.TextField;
 import com.jwebmp.plugins.quickforms.services.IAnnotationFieldHandler;
@@ -48,26 +53,6 @@ public class BuildTextAreaField implements IAnnotationFieldHandler<TextAreaField
             }
 
             @Override
-            public String minLengthMessage() {
-                return null;
-            }
-
-            @Override
-            public String maxLengthMessage() {
-                return null;
-            }
-
-            @Override
-            public String requiredMessage() {
-                return null;
-            }
-
-            @Override
-            public String patternMessage() {
-                return null;
-            }
-
-            @Override
             public boolean required() {
                 return false;
             }
@@ -93,13 +78,27 @@ public class BuildTextAreaField implements IAnnotationFieldHandler<TextAreaField
     public BSFormInputGroup<?, InputTextAreaType<?>> buildField(QuickForms<?, ?> form, Field field, TextAreaField annotation, BSFormInputGroup<?, InputTextAreaType<?>> fieldGroup) {
 
         BSQuickForm<?> formm = (BSQuickForm<?>) form;
-        String label = null;
-        if (formm.getLabelFromField(field).isPresent())
+        BSFormLabel<?> label = new BSFormLabel<>();
+        LabelField labelField = form.getLabelFromField(field).orElse(null);
+        if (labelField != null)
         {
-            label = formm.getLabelFromField(field).get()
-                    .value();
-
+            if (!labelField.classes()
+                    .isEmpty())
+            {
+                label.addClass(labelField.classes());
+            }
+            if (!labelField.style()
+                    .isEmpty())
+            {
+                label.addStyle(labelField.style());
+            }
+            if (labelField.showControlFeedback())
+            {
+                label.addClass(BSFormGroupOptions.Form_Control_Feedback);
+            }
+            label.setLabel(labelField.value());
         }
+
         BSFormInputGroup<?, InputTextAreaType<?>> textAreaInput = formm.getForm().createTextArea(formm.getFieldVariableName(field), label, true);
 
         if (annotation.showControlFeedback())
@@ -127,17 +126,24 @@ public class BuildTextAreaField implements IAnnotationFieldHandler<TextAreaField
             textAreaInput.getInput()
                     .addStyle(annotation.style());
         }
-        if (!annotation.requiredMessage()
-                .isEmpty())
-        {
-            textAreaInput.asMe()
-                    .addMessage(InputErrorValidations.required, annotation.requiredMessage());
+
+        if (!Strings.isNullOrEmpty(annotation.regexBind())) {
+            textAreaInput.getInput().addAttribute("ng-pattern", annotation.regexBind());
         }
-        if (!annotation.patternMessage()
-                .isEmpty())
-        {
-            textAreaInput.asMe()
-                    .addMessage(InputErrorValidations.pattern, annotation.requiredMessage());
+        if (!Strings.isNullOrEmpty(annotation.regex())) {
+            textAreaInput.getInput().addAttribute("pattern", annotation.regex());
+        }
+
+
+        if (field.isAnnotationPresent(ErrorMessages.class)) {
+            ErrorMessages em = field.getAnnotation(ErrorMessages.class);
+            textAreaInput.getMessages().setShowOnEdit(true);
+            textAreaInput.getMessages().addMessage(InputErrorValidations.min, em.minMessage(),em.inline());
+            textAreaInput.getMessages().addMessage(InputErrorValidations.minLength, em.minLengthMessage(),em.inline());
+            textAreaInput.getMessages().addMessage(InputErrorValidations.max, em.maxMessage(),em.inline());
+            textAreaInput.getMessages().addMessage(InputErrorValidations.maxLength, em.maxLengthMessage(),em.inline());
+            textAreaInput.getMessages().addMessage(InputErrorValidations.pattern, em.patternMessage(),em.inline());
+            textAreaInput.getMessages().addMessage(InputErrorValidations.required, em.requiredMessage(),em.inline());
         }
         form.setValue(field, textAreaInput.getInput());
 

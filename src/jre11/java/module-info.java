@@ -20,6 +20,8 @@ module com.jwebmp.plugins.bs4.quickforms {
     requires com.jwebmp.plugins.bs4.datetimepicker;
     requires com.jwebmp.plugins.bs4.toggle;
     requires com.guicedee.guicedinjection;
+    requires com.jwebmp.plugins.blueimp.fileupload;
+    requires com.jwebmp.plugins.bs4.nyaselect;
 
     requires java.logging;
     requires org.apache.commons.text;
@@ -38,7 +40,6 @@ module com.jwebmp.plugins.bs4.quickforms {
             BuildFileUploadField,
             BuildHiddenField,
             BuildNumberField,
-            BuildNumberSpinnerField,
             BuildPasswordField,
             BuildRadioField,
             BuildSearchField,

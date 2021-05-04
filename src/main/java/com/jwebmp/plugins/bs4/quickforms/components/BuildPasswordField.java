@@ -1,11 +1,16 @@
 package com.jwebmp.plugins.bs4.quickforms.components;
 
+import com.google.common.base.Strings;
 import com.jwebmp.core.base.angular.forms.enumerations.InputErrorValidations;
 import com.jwebmp.core.base.html.inputs.InputPasswordType;
 import com.jwebmp.core.base.html.inputs.InputTextType;
+import com.jwebmp.plugins.bootstrap4.forms.BSFormLabel;
+import com.jwebmp.plugins.bootstrap4.forms.groups.enumerations.BSFormGroupOptions;
 import com.jwebmp.plugins.bootstrap4.forms.groups.sets.BSFormInputGroup;
 import com.jwebmp.plugins.bs4.quickforms.BSQuickForm;
 import com.jwebmp.plugins.quickforms.QuickForms;
+import com.jwebmp.plugins.quickforms.annotations.ErrorMessages;
+import com.jwebmp.plugins.quickforms.annotations.LabelField;
 import com.jwebmp.plugins.quickforms.annotations.PasswordField;
 import com.jwebmp.plugins.quickforms.annotations.TextField;
 import com.jwebmp.plugins.quickforms.services.IAnnotationFieldHandler;
@@ -51,27 +56,7 @@ public class BuildPasswordField implements IAnnotationFieldHandler<PasswordField
             public int maxLength() {
                 return 0;
             }
-
-            @Override
-            public String requiredMessage() {
-                return null;
-            }
-
-            @Override
-            public String minLengthMessage() {
-                return null;
-            }
-
-            @Override
-            public String maxLengthMessage() {
-                return null;
-            }
-
-            @Override
-            public String patternMessage() {
-                return null;
-            }
-
+            
             @Override
             public boolean required() {
                 return false;
@@ -98,12 +83,25 @@ public class BuildPasswordField implements IAnnotationFieldHandler<PasswordField
     public BSFormInputGroup<?, InputPasswordType<?>> buildField(QuickForms<?, ?> form, Field field, PasswordField annotation, BSFormInputGroup<?, InputPasswordType<?>> fieldGroup) {
 
         BSQuickForm<?> formm = (BSQuickForm<?>) form;
-        String label = null;
-        if (formm.getLabelFromField(field).isPresent())
+        BSFormLabel<?> label = new BSFormLabel<>();
+        LabelField labelField = form.getLabelFromField(field).orElse(null);
+        if (labelField != null)
         {
-            label = formm.getLabelFromField(field).get()
-                    .value();
-
+            if (!labelField.classes()
+                    .isEmpty())
+            {
+                label.addClass(labelField.classes());
+            }
+            if (!labelField.style()
+                    .isEmpty())
+            {
+                label.addStyle(labelField.style());
+            }
+            if (labelField.showControlFeedback())
+            {
+                label.addClass(BSFormGroupOptions.Form_Control_Feedback);
+            }
+            label.setLabel(labelField.value());
         }
         BSFormInputGroup<?, InputPasswordType<?>> passwordField = formm.getForm().createPasswordInput(formm.getFieldVariableName(field), label, true);
         passwordField.setInput(new InputPasswordType<>());
@@ -135,19 +133,24 @@ public class BuildPasswordField implements IAnnotationFieldHandler<PasswordField
             passwordField.getInput()
                     .addStyle(annotation.style());
         }
-        if (!annotation.requiredMessage()
-                .isEmpty())
-        {
-            passwordField.asMe()
-                    .addMessage(InputErrorValidations.required, annotation.requiredMessage());
+
+        if (!Strings.isNullOrEmpty(annotation.regexBind())) {
+            passwordField.getInput().addAttribute("ng-pattern", annotation.regexBind());
         }
-        if (!annotation.patternMessage()
-                .isEmpty())
-        {
-            passwordField.asMe()
-                    .addMessage(InputErrorValidations.pattern, annotation.requiredMessage());
+        if (!Strings.isNullOrEmpty(annotation.regex())) {
+            passwordField.getInput().addAttribute("pattern", annotation.regex());
         }
 
+        if (field.isAnnotationPresent(ErrorMessages.class)) {
+            ErrorMessages em = field.getAnnotation(ErrorMessages.class);
+            passwordField.getMessages().setShowOnEdit(true);
+            passwordField.getMessages().addMessage(InputErrorValidations.min, em.minMessage(),em.inline());
+            passwordField.getMessages().addMessage(InputErrorValidations.minLength, em.minLengthMessage(),em.inline());
+            passwordField.getMessages().addMessage(InputErrorValidations.max, em.maxMessage(),em.inline());
+            passwordField.getMessages().addMessage(InputErrorValidations.maxLength, em.maxLengthMessage(),em.inline());
+            passwordField.getMessages().addMessage(InputErrorValidations.pattern, em.patternMessage(),em.inline());
+            passwordField.getMessages().addMessage(InputErrorValidations.required, em.requiredMessage(),em.inline());
+        }
         return passwordField;
 
     }
