@@ -8,6 +8,7 @@ import com.jwebmp.core.base.html.inputs.InputSelectType;
 import com.jwebmp.plugins.bootstrap4.forms.BSFormLabel;
 import com.jwebmp.plugins.bootstrap4.forms.groups.enumerations.BSFormGroupOptions;
 import com.jwebmp.plugins.bootstrap4.forms.groups.sets.BSFormInputGroup;
+import com.jwebmp.plugins.bootstrap4.select.BSSelect;
 import com.jwebmp.plugins.bs4.nyaselect.NyaSelect;
 import com.jwebmp.plugins.bs4.nyaselect.NyaSelectItem;
 import com.jwebmp.plugins.bs4.quickforms.BSQuickForm;
@@ -22,8 +23,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.*;
-import java.util.Collection;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -110,8 +110,8 @@ public class BuildSelectField implements IAnnotationFieldHandler<SelectField, BS
 			label.setLabel(labelField.value());
 		}
 		
-		Select<?> select = new Select<>().addClass("selectpicker")
-		                                 .addAttribute("data-size", "5");
+		
+		Select<?> select = new BSSelect<>();
 		try
 		{
 			String mName = "get" + StringUtils.capitalize(field.getName());
@@ -121,7 +121,25 @@ public class BuildSelectField implements IAnnotationFieldHandler<SelectField, BS
 				                     .getClass()
 				                     .getMethod(mName);
 				Object value = method.invoke(formm.getObject());
-				Collection c = (Collection) value;
+				
+				
+				Collection l = null;
+				if(method.getReturnType().isEnum())
+				{
+					List ll = new ArrayList();
+					for (Object enumConstant : method.getReturnType()
+					                                 .getEnumConstants())
+					{
+						ll.add(enumConstant);
+					}
+					l = ll;
+				}
+				else if(value instanceof Collection)
+				{
+					l = (Collection) value;
+				}
+				
+				Collection c = l;
 				
 				for (Object o : c)
 				{
@@ -166,7 +184,7 @@ public class BuildSelectField implements IAnnotationFieldHandler<SelectField, BS
 		
 		BSFormInputGroup<?, InputSelectType<?>> selectGroup = formm.getForm()
 		                                                           .createSelectDropdown(formm.getFieldVariableName(field), label, true);
-		InputSelectType<?> input = new InputSelectType<>();
+		InputSelectType<?> input = select;
 		input.bind(formm.getFieldVariableName(field));
 		selectGroup.setInput(input);
 		
