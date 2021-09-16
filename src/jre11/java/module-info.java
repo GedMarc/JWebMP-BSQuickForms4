@@ -22,6 +22,7 @@ module com.jwebmp.plugins.bs4.quickforms {
     requires com.guicedee.guicedinjection;
     requires com.jwebmp.plugins.blueimp.fileupload;
     requires com.jwebmp.plugins.bs4.nyaselect;
+    requires com.jwebmp.plugins.spectrum.colourpicker;
 
     requires java.logging;
     requires org.apache.commons.text;

@@ -98,6 +98,8 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 	{
 		return (BSForm<?>) super.getForm();
 	}
+	
+	
 
 	public Optional<LabelField> getLabelFromField(Field field)
 	{

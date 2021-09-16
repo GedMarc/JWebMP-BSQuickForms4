@@ -6,6 +6,7 @@ import com.jwebmp.core.base.html.Label;
 import com.jwebmp.core.base.html.inputs.InputColourType;
 import com.jwebmp.core.base.html.inputs.InputTextType;
 import com.jwebmp.plugins.bootstrap4.forms.BSFormLabel;
+import com.jwebmp.plugins.bootstrap4.forms.groups.BSFormGroup;
 import com.jwebmp.plugins.bootstrap4.forms.groups.enumerations.BSFormGroupOptions;
 import com.jwebmp.plugins.bootstrap4.forms.groups.sets.BSFormInputGroup;
 import com.jwebmp.plugins.bs4.quickforms.BSQuickForm;
@@ -15,6 +16,7 @@ import com.jwebmp.plugins.quickforms.annotations.ErrorMessages;
 import com.jwebmp.plugins.quickforms.annotations.LabelField;
 import com.jwebmp.plugins.quickforms.annotations.TextField;
 import com.jwebmp.plugins.quickforms.services.IAnnotationFieldHandler;
+import com.jwebmp.plugins.spectrum.colourpicker.JQSpectrumColourPicker;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
@@ -22,7 +24,7 @@ import java.lang.reflect.Field;
 import static com.jwebmp.plugins.bootstrap4.options.BSColumnOptions.Col;
 import static com.jwebmp.plugins.bootstrap4.options.BSContainerOptions.Row;
 
-public class BuildColourField implements IAnnotationFieldHandler<ColorField, BSFormInputGroup<?, InputColourType<?>>> {
+public class BuildColourField implements IAnnotationFieldHandler<ColorField, BSFormGroup<?, InputTextType<?>>> {
     @Override
     public ColorField appliedAnnotation() {
         return new ColorField(){
@@ -81,7 +83,7 @@ public class BuildColourField implements IAnnotationFieldHandler<ColorField, BSF
     }
 
     @Override
-    public BSFormInputGroup<?, InputColourType<?>> buildField(QuickForms<?, ?> form, Field field, ColorField annotation, BSFormInputGroup<?, InputColourType<?>> fieldGroup) {
+    public BSFormGroup<?, InputTextType<?>> buildField(QuickForms<?, ?> form, Field field, ColorField annotation, BSFormGroup<?, InputTextType<?>> fieldGroup) {
 
         BSQuickForm<?> formm = (BSQuickForm<?>) form;
         BSFormLabel<?> label = new BSFormLabel<>();
@@ -104,21 +106,23 @@ public class BuildColourField implements IAnnotationFieldHandler<ColorField, BSF
             }
             label.setLabel(labelField.value());
         }
-
-
-        BSFormInputGroup<?, InputColourType<?>> colourField = formm.getForm().createColourInput(formm.getFieldVariableName(field), label);
-        colourField.setInput(new InputColourType<>());
-
-        colourField.bind(formm.getFieldVariableName(field));
+        BSFormGroup<?, InputTextType<?>> colourField = formm.getForm().createTextInput(formm.getFieldVariableName(field), label);
+        JQSpectrumColourPicker<?> colourPicker = new JQSpectrumColourPicker<>();
+        colourPicker.getOptions().setShowAlpha(true);
+        colourField.setInput(colourPicker);
+        
+    //    colourField.bind(formm.getFieldVariableName(field));
+        
+        
         if (annotation.required())
         {
             colourField.getInput()
                     .setRequired();
         }
-        if (annotation.showControlFeedback())
+      /*  if (annotation.showControlFeedback())
         {
             colourField.setStyleInputGroupTextWithValidation(true);
-        }
+        }*/
         if (!annotation.classes()
                 .isEmpty())
         {
@@ -143,8 +147,7 @@ public class BuildColourField implements IAnnotationFieldHandler<ColorField, BSF
         if (!Strings.isNullOrEmpty(annotation.regex())) {
             colourField.getInput().addAttribute("pattern", annotation.regex());
         }
-
-
+        
         if (field.isAnnotationPresent(ErrorMessages.class)) {
             ErrorMessages em = field.getAnnotation(ErrorMessages.class);
             colourField.getMessages().setShowOnEdit(true);
