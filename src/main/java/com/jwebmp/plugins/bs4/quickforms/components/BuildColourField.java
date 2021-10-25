@@ -114,7 +114,7 @@ public class BuildColourField implements IAnnotationFieldHandler<ColorField, BSF
 		                                                    .createTextInput(formm.getFieldVariableName(field), label);
 		JQSpectrumColourPicker<?> colourPicker = new JQSpectrumColourPicker<>();
 		colourPicker.getOptions()
-		            .setPreferredFormat(JQSpectrumaletteFormats.RGB);
+		            .setPreferredFormat(JQSpectrumPaletteFormats.RGB);
 		colourPicker.getOptions()
 		            .setShowAlpha(true);
 		colourField.setInput(colourPicker);
