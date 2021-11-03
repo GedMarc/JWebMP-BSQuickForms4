@@ -11,7 +11,7 @@
     <groupId>com.jwebmp.plugins.forms</groupId>
     <artifactId>jwebmp-bootstrap-quick-forms</artifactId>
     <packaging>jar</packaging>
-
+    <version>0.0.0_0-SNAPSHOT</version>
     <name>Bootstrap Quick Forms 4</name>
     <description>The JWebSwing implementation for Bootstrap 4 Quick Forms</description>
     <url>https://github.com/GedMarc/JWebSwing-BSQuickForms4</url>
