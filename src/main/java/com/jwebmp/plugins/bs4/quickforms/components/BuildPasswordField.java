@@ -104,12 +104,13 @@ public class BuildPasswordField implements IAnnotationFieldHandler<PasswordField
             label.setLabel(labelField.value());
         }
         BSFormInputGroup<?, InputPasswordType<?>> passwordField = formm.getForm().createPasswordInput(formm.getFieldVariableName(field), label, true);
-        passwordField.setInput(new InputPasswordType<>());
-        passwordField.bind(formm.getFieldVariableName(field));
+        InputPasswordType<?> passwordType = new InputPasswordType<>();
+        passwordField.setInput(passwordType);
+        
+        passwordType.bind(formm.getFieldVariableName(field));
         if (annotation.required())
         {
-            passwordField.getInput()
-                    .setRequired();
+            passwordType.setRequired();
         }
         if (annotation.showControlFeedback())
         {
@@ -118,20 +119,17 @@ public class BuildPasswordField implements IAnnotationFieldHandler<PasswordField
         if (!annotation.classes()
                 .isEmpty())
         {
-            passwordField.getInput()
-                    .addClass(annotation.classes());
+            passwordType .addClass(annotation.classes());
         }
         if (!annotation.placeholder()
                 .isEmpty())
         {
-            passwordField.getInput()
-                    .setPlaceholder(annotation.placeholder());
+            passwordType.setPlaceholder(annotation.placeholder());
         }
         if (!annotation.style()
                 .isEmpty())
         {
-            passwordField.getInput()
-                    .addStyle(annotation.style());
+            passwordType.addStyle(annotation.style());
         }
 
         if (!Strings.isNullOrEmpty(annotation.regexBind())) {
