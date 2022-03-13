@@ -26,7 +26,7 @@ module com.jwebmp.plugins.bs4.quickforms {
 
     requires java.logging;
     requires org.apache.commons.text;
-    requires com.jwebmp.core.angularjs;
+    requires com.jwebmp.core.angular;
 
     provides com.jwebmp.core.services.IPageConfigurator with com.jwebmp.plugins.bs4.quickforms.BSQuickFormsPageConfigurator;
 
