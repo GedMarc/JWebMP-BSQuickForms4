@@ -1,31 +1,23 @@
 package com.jwebmp.plugins.bs4.quickforms.components;
 
-import com.jwebmp.core.base.angular.forms.enumerations.InputErrorValidations;
-import com.jwebmp.core.base.html.Option;
-import com.jwebmp.core.base.html.Select;
-import com.jwebmp.core.base.html.inputs.InputSearchType;
-import com.jwebmp.core.base.html.inputs.InputSelectType;
-import com.jwebmp.plugins.bootstrap4.forms.BSFormLabel;
-import com.jwebmp.plugins.bootstrap4.forms.groups.enumerations.BSFormGroupOptions;
-import com.jwebmp.plugins.bootstrap4.forms.groups.sets.BSFormInputGroup;
-import com.jwebmp.plugins.bootstrap4.select.BSSelect;
-import com.jwebmp.plugins.bs4.nyaselect.NyaSelect;
-import com.jwebmp.plugins.bs4.nyaselect.NyaSelectItem;
-import com.jwebmp.plugins.bs4.quickforms.BSQuickForm;
-import com.jwebmp.plugins.quickforms.QuickForms;
-import com.jwebmp.plugins.quickforms.annotations.ErrorMessages;
-import com.jwebmp.plugins.quickforms.annotations.LabelField;
-import com.jwebmp.plugins.quickforms.annotations.SearchField;
-import com.jwebmp.plugins.quickforms.annotations.SelectField;
-import com.jwebmp.plugins.quickforms.annotations.formtypes.WebSelectComponent;
-import com.jwebmp.plugins.quickforms.services.IAnnotationFieldHandler;
-import org.apache.commons.lang3.StringUtils;
+import com.jwebmp.core.base.angular.forms.enumerations.*;
+import com.jwebmp.core.base.html.*;
+import com.jwebmp.core.base.html.inputs.*;
+import com.jwebmp.plugins.bootstrap.forms.*;
+import com.jwebmp.plugins.bootstrap.forms.groups.enumerations.*;
+import com.jwebmp.plugins.bootstrap.forms.groups.sets.*;
+import com.jwebmp.plugins.bootstrap.select.*;
+import com.jwebmp.plugins.bs4.quickforms.*;
+import com.jwebmp.plugins.quickforms.*;
+import com.jwebmp.plugins.quickforms.annotations.*;
+import com.jwebmp.plugins.quickforms.annotations.formtypes.*;
+import com.jwebmp.plugins.quickforms.services.*;
+import org.apache.commons.lang3.*;
 
-import java.lang.annotation.Annotation;
+import java.lang.annotation.*;
 import java.lang.reflect.*;
+import java.util.List;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class BuildSelectField implements IAnnotationFieldHandler<SelectField, BSFormInputGroup<?, InputSelectType<?>>>
 {
@@ -201,8 +193,8 @@ public class BuildSelectField implements IAnnotationFieldHandler<SelectField, BS
 		if (field.isAnnotationPresent(ErrorMessages.class))
 		{
 			ErrorMessages em = field.getAnnotation(ErrorMessages.class);
-			selectGroup.getMessages()
-			           .setShowOnEdit(true);
+		//	selectGroup.getMessages()
+		//	           .setShowOnEdit(true);
 			selectGroup.getMessages()
 			           .addMessage(InputErrorValidations.min, em.minMessage(), em.inline());
 			selectGroup.getMessages()

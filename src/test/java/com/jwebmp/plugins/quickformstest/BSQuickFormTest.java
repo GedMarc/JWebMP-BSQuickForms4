@@ -1,24 +1,20 @@
 package com.jwebmp.plugins.quickformstest;
 
-import com.jwebmp.core.base.html.Div;
-import com.jwebmp.core.base.html.Form;
-import com.jwebmp.core.base.html.inputs.InputFileType;
-import com.jwebmp.core.htmlbuilder.javascript.JavaScriptPart;
-import com.jwebmp.plugins.blueimp.fileupload.parts.BlueImpUploadButtonBar;
-import com.jwebmp.plugins.blueimp.fileupload.parts.BlueImpUploadForm;
-import com.jwebmp.plugins.bootstrap4.forms.BSForm;
-import com.jwebmp.plugins.bootstrap4.forms.BSFormLabel;
-import com.jwebmp.plugins.bootstrap4.forms.groups.BSFormGroup;
-import com.jwebmp.plugins.bootstrap4.forms.groups.enumerations.BSFormGroupOptions;
-import com.jwebmp.plugins.bootstrap4.forms.groups.sets.BSFormInputGroup;
-import com.jwebmp.plugins.bootstrap4.options.BSDefaultOptions;
-import com.jwebmp.plugins.bs4.quickforms.BSQuickForm;
+import com.jwebmp.core.base.angular.services.interfaces.*;
+import com.jwebmp.core.base.html.*;
+import com.jwebmp.core.base.html.inputs.*;
+import com.jwebmp.core.htmlbuilder.javascript.*;
+import com.jwebmp.plugins.bootstrap.forms.*;
+import com.jwebmp.plugins.bootstrap.forms.groups.*;
+import com.jwebmp.plugins.bootstrap.forms.groups.enumerations.*;
+import com.jwebmp.plugins.bootstrap.forms.groups.sets.*;
+import com.jwebmp.plugins.bootstrap.options.*;
+import com.jwebmp.plugins.bs4.quickforms.*;
 import com.jwebmp.plugins.quickforms.annotations.*;
-import com.jwebmp.plugins.quickforms.annotations.states.WebField;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.jwebmp.plugins.quickforms.annotations.states.*;
+import org.junit.jupiter.api.*;
 
-import java.lang.annotation.Annotation;
+import java.lang.annotation.*;
 
 public class BSQuickFormTest
 
@@ -53,30 +49,6 @@ public class BSQuickFormTest
 		form.add(group);
 		
 		System.out.println(form.toString(0));
-	}
-	@Test
-	public void testClassAddition2()
-	{
-		Div d = new Div<>();
-		d.addClass(BSDefaultOptions.Active);
-		System.out.println(d.toString(0));
-		
-		BSForm<?> form = new BSForm<>().setID("outer form");
-		BSFormInputGroup<?, ?> group = new BSFormInputGroup<>();
-		
-		BlueImpUploadForm<?> jBlueImpUploadForm = new BlueImpUploadForm<>();
-		jBlueImpUploadForm.addButtonBar();
-		group.add(jBlueImpUploadForm);
-		
-		form.add(group);
-		
-		System.out.println(form.toString(0));
-		
-		System.out.println("DTTTOOOOOO");
-		
-		Dto dto = new Dto();
-		BSQuickForm<?> quickForm = new BSQuickForm<>(dto);
-		System.out.println(quickForm.toString(0));
 	}
 	
 	@Test
@@ -147,21 +119,8 @@ public class BSQuickFormTest
 		}
 		
 		BSFormGroup<?, InputFileType<?>> fieldGroup = new BSFormGroup<>();
-		fieldGroup.setAddInput(false);
+		fieldGroup.setAddInput(true);
 		fieldGroup.addLabel(label);
-		
-		BlueImpUploadForm<?> b = new BlueImpUploadForm<>();
-		BlueImpUploadButtonBar<?> blueImpUploadButtonBar = b.addButtonBar()
-		                                                    .addAddButton("btn btn-success", "fas fa-plus", "Add", false)
-		                                                    .addStartButton("btn btn-primary", "fas fa-upload", "Start Upload")
-		                                                    .addCancelButton("btn btn-warning", "fas fa-do-not-enter", "Cancel")
-		                                                    .addDeleteSelected("btn btn-danger", "fas fa-times", "Delete Selected")
-		                                                    .addDeleteCheckbox("", "fa fas-cancel", "Delete Selected")
-		                                                    .addGlobalFileProcessingState()
-		                                                    .addGlobalProgressState();
-		b.addDisplayTable();
-		fieldGroup.setInput(blueImpUploadButtonBar.getFileInput());
-		fieldGroup.add(b);
 		
 		form.add(fieldGroup);
 		
@@ -248,7 +207,7 @@ public class BSQuickFormTest
 	}
 
 	public static class Dto
-			extends JavaScriptPart<Dto>
+			extends JavaScriptPart<Dto> implements INgDataType<Dto>
 	{
 		@TextField
 		@WebField

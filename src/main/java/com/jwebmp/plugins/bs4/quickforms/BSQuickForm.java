@@ -25,13 +25,14 @@ package com.jwebmp.plugins.bs4.quickforms;
 import com.guicedee.guicedinjection.GuiceContext;
 import com.guicedee.logger.LogFactory;
 import com.jwebmp.core.Event;
+import com.jwebmp.core.base.angular.services.interfaces.*;
 import com.jwebmp.core.base.html.H1;
 import com.jwebmp.core.base.html.H3;
 import com.jwebmp.core.plugins.ComponentInformation;
-import com.jwebmp.plugins.bootstrap4.buttons.BSButton;
-import com.jwebmp.plugins.bootstrap4.forms.BSForm;
-import com.jwebmp.plugins.bootstrap4.forms.groups.BSFormGroup;
-import com.jwebmp.plugins.bootstrap4.forms.groups.enumerations.BSFormGroupOptions;
+import com.jwebmp.plugins.bootstrap.buttons.BSButton;
+import com.jwebmp.plugins.bootstrap.forms.BSForm;
+import com.jwebmp.plugins.bootstrap.forms.groups.BSFormGroup;
+import com.jwebmp.plugins.bootstrap.forms.groups.enumerations.BSFormGroupOptions;
 import com.jwebmp.plugins.bs4.quickforms.annotations.implementations.DefaultLabelField;
 import com.jwebmp.plugins.quickforms.QuickForms;
 import com.jwebmp.plugins.quickforms.annotations.*;
@@ -62,12 +63,12 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 	/**
 	 * Constructs a new BSQuickForm
 	 */
-	public BSQuickForm(@NotNull Object anything)
+	public BSQuickForm(@NotNull INgDataType<?> anything)
 	{
 		this(anything, anything.getClass().getCanonicalName().replace(CHAR_DOT,CHAR_UNDERSCORE));
 	}
 
-	public BSQuickForm(@NotNull Object anything,String formName)
+	public BSQuickForm(@NotNull INgDataType<?> anything,String formName)
 	{
 		setObject(anything);
 		setForm(new BSForm<>());
@@ -100,7 +101,6 @@ public class BSQuickForm<J extends BSQuickForm<J>>
 	}
 	
 	
-
 	public Optional<LabelField> getLabelFromField(Field field)
 	{
 		if (field.isAnnotationPresent(LabelField.class))

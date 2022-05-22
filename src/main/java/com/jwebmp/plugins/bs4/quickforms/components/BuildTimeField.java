@@ -4,9 +4,9 @@ import com.google.common.base.Strings;
 import com.jwebmp.core.base.angular.forms.enumerations.InputErrorValidations;
 import com.jwebmp.core.base.html.inputs.InputDateType;
 import com.jwebmp.core.base.html.inputs.InputNumberType;
-import com.jwebmp.plugins.bootstrap4.forms.BSFormLabel;
-import com.jwebmp.plugins.bootstrap4.forms.groups.enumerations.BSFormGroupOptions;
-import com.jwebmp.plugins.bootstrap4.forms.groups.sets.BSFormInputGroup;
+import com.jwebmp.plugins.bootstrap.forms.BSFormLabel;
+import com.jwebmp.plugins.bootstrap.forms.groups.enumerations.BSFormGroupOptions;
+import com.jwebmp.plugins.bootstrap.forms.groups.sets.BSFormInputGroup;
 import com.jwebmp.plugins.bs4.quickforms.BSQuickForm;
 import com.jwebmp.plugins.quickforms.QuickForms;
 import com.jwebmp.plugins.quickforms.annotations.DatePickerField;
@@ -120,7 +120,7 @@ public class BuildTimeField implements IAnnotationFieldHandler<TimePickerField, 
 
         if (field.isAnnotationPresent(ErrorMessages.class)) {
             ErrorMessages em = field.getAnnotation(ErrorMessages.class);
-            timeInput.getMessages().setShowOnEdit(true);
+         //   timeInput.getMessages().setShowOnEdit(true);
             timeInput.getMessages().addMessage(InputErrorValidations.min, em.minMessage(),em.inline());
             timeInput.getMessages().addMessage(InputErrorValidations.minLength, em.minLengthMessage(),em.inline());
             timeInput.getMessages().addMessage(InputErrorValidations.max, em.maxMessage(),em.inline());

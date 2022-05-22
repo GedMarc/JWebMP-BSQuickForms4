@@ -3,9 +3,9 @@ package com.jwebmp.plugins.bs4.quickforms.components;
 import com.google.common.base.*;
 import com.jwebmp.core.base.angular.forms.enumerations.*;
 import com.jwebmp.core.base.html.inputs.*;
-import com.jwebmp.plugins.bootstrap4.forms.*;
-import com.jwebmp.plugins.bootstrap4.forms.groups.*;
-import com.jwebmp.plugins.bootstrap4.forms.groups.enumerations.*;
+import com.jwebmp.plugins.bootstrap.forms.*;
+import com.jwebmp.plugins.bootstrap.forms.groups.*;
+import com.jwebmp.plugins.bootstrap.forms.groups.enumerations.*;
 import com.jwebmp.plugins.bs4.quickforms.*;
 import com.jwebmp.plugins.quickforms.*;
 import com.jwebmp.plugins.quickforms.annotations.*;
@@ -163,8 +163,7 @@ public class BuildColourField implements IAnnotationFieldHandler<ColorField, BSF
 		if (field.isAnnotationPresent(ErrorMessages.class))
 		{
 			ErrorMessages em = field.getAnnotation(ErrorMessages.class);
-			colourField.getMessages()
-			           .setShowOnEdit(true);
+			//colourField.getMessages()			           .setShowOnEdit(true);
 			colourField.getMessages()
 			           .addMessage(InputErrorValidations.min, em.minMessage(), em.inline());
 			colourField.getMessages()

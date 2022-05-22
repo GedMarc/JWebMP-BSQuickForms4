@@ -4,9 +4,9 @@ import com.google.common.base.Strings;
 import com.jwebmp.core.base.angular.forms.enumerations.InputErrorValidations;
 import com.jwebmp.core.base.html.inputs.InputPasswordType;
 import com.jwebmp.core.base.html.inputs.InputTextType;
-import com.jwebmp.plugins.bootstrap4.forms.BSFormLabel;
-import com.jwebmp.plugins.bootstrap4.forms.groups.enumerations.BSFormGroupOptions;
-import com.jwebmp.plugins.bootstrap4.forms.groups.sets.BSFormInputGroup;
+import com.jwebmp.plugins.bootstrap.forms.BSFormLabel;
+import com.jwebmp.plugins.bootstrap.forms.groups.enumerations.BSFormGroupOptions;
+import com.jwebmp.plugins.bootstrap.forms.groups.sets.BSFormInputGroup;
 import com.jwebmp.plugins.bs4.quickforms.BSQuickForm;
 import com.jwebmp.plugins.quickforms.QuickForms;
 import com.jwebmp.plugins.quickforms.annotations.ErrorMessages;
@@ -141,7 +141,7 @@ public class BuildPasswordField implements IAnnotationFieldHandler<PasswordField
 
         if (field.isAnnotationPresent(ErrorMessages.class)) {
             ErrorMessages em = field.getAnnotation(ErrorMessages.class);
-            passwordField.getMessages().setShowOnEdit(true);
+          //  passwordField.getMessages().setShowOnEdit(true);
             passwordField.getMessages().addMessage(InputErrorValidations.min, em.minMessage(),em.inline());
             passwordField.getMessages().addMessage(InputErrorValidations.minLength, em.minLengthMessage(),em.inline());
             passwordField.getMessages().addMessage(InputErrorValidations.max, em.maxMessage(),em.inline());

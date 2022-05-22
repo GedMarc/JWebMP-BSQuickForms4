@@ -5,9 +5,9 @@ import com.jwebmp.core.base.angular.forms.enumerations.InputErrorValidations;
 import com.jwebmp.core.base.html.Label;
 import com.jwebmp.core.base.html.inputs.InputDateType;
 import com.jwebmp.core.base.html.inputs.InputEmailType;
-import com.jwebmp.plugins.bootstrap4.forms.BSFormLabel;
-import com.jwebmp.plugins.bootstrap4.forms.groups.enumerations.BSFormGroupOptions;
-import com.jwebmp.plugins.bootstrap4.forms.groups.sets.BSFormInputGroup;
+import com.jwebmp.plugins.bootstrap.forms.BSFormLabel;
+import com.jwebmp.plugins.bootstrap.forms.groups.enumerations.BSFormGroupOptions;
+import com.jwebmp.plugins.bootstrap.forms.groups.sets.BSFormInputGroup;
 import com.jwebmp.plugins.bs4.quickforms.BSQuickForm;
 import com.jwebmp.plugins.quickforms.QuickForms;
 import com.jwebmp.plugins.quickforms.annotations.DatePickerField;
@@ -19,8 +19,8 @@ import com.jwebmp.plugins.quickforms.services.IAnnotationFieldHandler;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 
-import static com.jwebmp.plugins.bootstrap4.options.BSColumnOptions.Col;
-import static com.jwebmp.plugins.bootstrap4.options.BSContainerOptions.Row;
+import static com.jwebmp.plugins.bootstrap.options.BSColumnOptions.Col;
+import static com.jwebmp.plugins.bootstrap.options.BSContainerOptions.Row;
 
 public class BuildEmailField implements IAnnotationFieldHandler<EmailField, BSFormInputGroup<?, InputEmailType<?>>> {
     @Override
@@ -147,7 +147,7 @@ public class BuildEmailField implements IAnnotationFieldHandler<EmailField, BSFo
 
         if (field.isAnnotationPresent(ErrorMessages.class)) {
             ErrorMessages em = field.getAnnotation(ErrorMessages.class);
-            emailField.getMessages().setShowOnEdit(true);
+           // emailField.getMessages().setShowOnEdit(true);
             emailField.getMessages().addMessage(InputErrorValidations.min, em.minMessage(),em.inline());
             emailField.getMessages().addMessage(InputErrorValidations.minLength, em.minLengthMessage(),em.inline());
             emailField.getMessages().addMessage(InputErrorValidations.max, em.maxMessage(),em.inline());

@@ -5,9 +5,9 @@ import com.jwebmp.core.base.angular.forms.enumerations.InputErrorValidations;
 import com.jwebmp.core.base.html.Label;
 import com.jwebmp.core.base.html.inputs.InputDateType;
 import com.jwebmp.core.base.html.inputs.InputTextType;
-import com.jwebmp.plugins.bootstrap4.forms.BSFormLabel;
-import com.jwebmp.plugins.bootstrap4.forms.groups.enumerations.BSFormGroupOptions;
-import com.jwebmp.plugins.bootstrap4.forms.groups.sets.BSFormInputGroup;
+import com.jwebmp.plugins.bootstrap.forms.BSFormLabel;
+import com.jwebmp.plugins.bootstrap.forms.groups.enumerations.BSFormGroupOptions;
+import com.jwebmp.plugins.bootstrap.forms.groups.sets.BSFormInputGroup;
 import com.jwebmp.plugins.bs4.quickforms.BSQuickForm;
 import com.jwebmp.plugins.quickforms.QuickForms;
 import com.jwebmp.plugins.quickforms.annotations.DatePickerField;
@@ -19,8 +19,8 @@ import com.jwebmp.plugins.quickforms.services.IAnnotationFieldHandler;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 
-import static com.jwebmp.plugins.bootstrap4.options.BSColumnOptions.Col;
-import static com.jwebmp.plugins.bootstrap4.options.BSContainerOptions.Row;
+import static com.jwebmp.plugins.bootstrap.options.BSColumnOptions.Col;
+import static com.jwebmp.plugins.bootstrap.options.BSContainerOptions.Row;
 
 public class BuildDateField implements IAnnotationFieldHandler<DatePickerField, BSFormInputGroup<?, InputDateType<?>>> {
     @Override
@@ -123,7 +123,7 @@ public class BuildDateField implements IAnnotationFieldHandler<DatePickerField, 
         }
         if (field.isAnnotationPresent(ErrorMessages.class)) {
             ErrorMessages em = field.getAnnotation(ErrorMessages.class);
-            textInput.getMessages().setShowOnEdit(true);
+           // textInput.getMessages().setShowOnEdit(true);
             textInput.getMessages().addMessage(InputErrorValidations.min, em.minMessage(),em.inline());
             textInput.getMessages().addMessage(InputErrorValidations.minLength, em.minLengthMessage(),em.inline());
             textInput.getMessages().addMessage(InputErrorValidations.max, em.maxMessage(),em.inline());

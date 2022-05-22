@@ -21,46 +21,27 @@
         <url>https://github.com/GedMarc/JWebSwing-BSQuickForms4/issues</url>
     </issueManagement>
     <dependencies>
+
         <dependency>
             <groupId>com.jwebmp.plugins.bootstrap</groupId>
-            <artifactId>jwebmp-bootstrap-toggle</artifactId>
+            <artifactId>jwebmp-bootstrap</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.jwebmp.plugins.bootstrap</groupId>
-            <artifactId>jwebmp-bootstrap-date-time-picker</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>com.jwebmp.plugins.forms</groupId>
             <artifactId>jwebmp-quickforms</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.jwebmp.plugins.angular</groupId>
-            <artifactId>jwebmp-angular-pretty-checkboxes</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.jwebmp.plugins.forms</groupId>
-            <artifactId>jwebmp-smart-wizard</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.jwebmp.plugins.angular</groupId>
-            <artifactId>jwebmp-angular-file-upload</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.jwebmp.plugins.blueimp</groupId>
-            <artifactId>jwebmp-blueimp-fileupload</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.jwebmp.plugins.bootstrap</groupId>
-            <artifactId>jwebmp-bootstrap-nya-select</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>com.jwebmp.plugins.forms</groupId>
             <artifactId>jwebmp-quickforms-annotations</artifactId>
         </dependency>
+
         <dependency>
-            <groupId>com.jwebmp.plugins.jquery</groupId>
-            <artifactId>jwebmp-spectrum-colour-picker</artifactId>
+            <groupId>com.jwebmp.plugins.angular</groupId>
+            <artifactId>angularts</artifactId>
         </dependency>
+
     </dependencies>
 
     <scm>

@@ -1,18 +1,14 @@
 package com.jwebmp.plugins.bs4.quickforms.components;
 
 import com.jwebmp.core.base.angular.forms.enumerations.InputErrorValidations;
-import com.jwebmp.core.base.html.inputs.InputTextType;
-import com.jwebmp.plugins.bootstrap4.forms.BSFormLabel;
-import com.jwebmp.plugins.bootstrap4.forms.groups.enumerations.BSFormGroupOptions;
-import com.jwebmp.plugins.bootstrap4.forms.groups.sets.BSFormInputGroup;
+import com.jwebmp.plugins.bootstrap.forms.BSFormLabel;
+import com.jwebmp.plugins.bootstrap.forms.groups.enumerations.BSFormGroupOptions;
+import com.jwebmp.plugins.bootstrap.forms.groups.sets.BSFormInputGroup;
 import com.jwebmp.plugins.bs4.quickforms.BSQuickForm;
-import com.jwebmp.plugins.bs4.toggle.BSSwitch4;
 import com.jwebmp.plugins.quickforms.QuickForms;
 import com.jwebmp.plugins.quickforms.annotations.ErrorMessages;
 import com.jwebmp.plugins.quickforms.annotations.LabelField;
 import com.jwebmp.plugins.quickforms.annotations.SwitchField;
-import com.jwebmp.plugins.quickforms.annotations.TextField;
-import com.jwebmp.plugins.quickforms.services.IAnnotationFieldHandler;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;

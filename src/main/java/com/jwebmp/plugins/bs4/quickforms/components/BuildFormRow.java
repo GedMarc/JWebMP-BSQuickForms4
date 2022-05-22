@@ -2,7 +2,7 @@ package com.jwebmp.plugins.bs4.quickforms.components;
 
 import com.google.common.base.Strings;
 import com.jwebmp.core.base.interfaces.IComponentHierarchyBase;
-import com.jwebmp.plugins.bootstrap4.containers.BSRow;
+import com.jwebmp.plugins.bootstrap.containers.BSRow;
 import com.jwebmp.plugins.quickforms.annotations.WebFormStartRow;
 import com.jwebmp.plugins.quickforms.services.IFormFieldWrapperStart;
 

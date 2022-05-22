@@ -1,6 +1,6 @@
 package com.jwebmp.plugins.bs4.quickforms.annotations.actions;
 
-import com.jwebmp.plugins.bootstrap4.options.BSColumnOptions;
+import com.jwebmp.plugins.bootstrap.options.BSColumnOptions;
 
 import java.lang.annotation.*;
 

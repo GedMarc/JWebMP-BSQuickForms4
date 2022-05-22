@@ -1,28 +1,19 @@
 package com.jwebmp.plugins.bs4.quickforms.components;
 
-import com.google.common.base.Strings;
-import com.jwebmp.core.base.angular.forms.enumerations.InputErrorValidations;
-import com.jwebmp.core.base.html.Label;
-import com.jwebmp.core.base.html.inputs.InputDateType;
-import com.jwebmp.plugins.bootstrap4.forms.BSFormLabel;
-import com.jwebmp.plugins.bootstrap4.forms.groups.enumerations.BSFormGroupOptions;
-import com.jwebmp.plugins.bootstrap4.forms.groups.sets.BSFormInputGroup;
-import com.jwebmp.plugins.bs4.datetimepicker.BS4DateTimePicker;
-import com.jwebmp.plugins.bs4.quickforms.BSQuickForm;
-import com.jwebmp.plugins.quickforms.QuickForms;
-import com.jwebmp.plugins.quickforms.annotations.DatePickerField;
-import com.jwebmp.plugins.quickforms.annotations.DateTimePickerField;
-import com.jwebmp.plugins.quickforms.annotations.ErrorMessages;
-import com.jwebmp.plugins.quickforms.annotations.LabelField;
-import com.jwebmp.plugins.quickforms.services.IAnnotationFieldHandler;
+import com.google.common.base.*;
+import com.jwebmp.core.base.angular.forms.enumerations.*;
+import com.jwebmp.plugins.bootstrap.datetimepicker.*;
+import com.jwebmp.plugins.bootstrap.forms.*;
+import com.jwebmp.plugins.bootstrap.forms.groups.enumerations.*;
+import com.jwebmp.plugins.quickforms.*;
+import com.jwebmp.plugins.quickforms.annotations.*;
+import com.jwebmp.plugins.quickforms.services.*;
 
-import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
+import java.lang.annotation.*;
+import java.lang.reflect.*;
 
-import static com.jwebmp.plugins.bootstrap4.options.BSColumnOptions.Col;
-import static com.jwebmp.plugins.bootstrap4.options.BSContainerOptions.Row;
-
-public class BuildDateTimeField implements IAnnotationFieldHandler<DateTimePickerField, BS4DateTimePicker<?>> {
+public class BuildDateTimeField implements IAnnotationFieldHandler<DateTimePickerField, BSDateTimePicker<?>>
+{
     @Override
     public DateTimePickerField appliedAnnotation() {
         return new DateTimePickerField(){
@@ -64,7 +55,7 @@ public class BuildDateTimeField implements IAnnotationFieldHandler<DateTimePicke
     }
 
     @Override
-    public BS4DateTimePicker<?> buildField(QuickForms<?, ?> form, Field field, DateTimePickerField annotation, BS4DateTimePicker<?> fieldGroup) {
+    public BSDateTimePicker<?> buildField(QuickForms<?, ?> form, Field field, DateTimePickerField annotation, BSDateTimePicker<?> fieldGroup) {
 
         BSFormLabel<?> label = new BSFormLabel<>();
         LabelField labelField = form.getLabelFromField(field).orElse(null);
@@ -86,7 +77,7 @@ public class BuildDateTimeField implements IAnnotationFieldHandler<DateTimePicke
             }
             label.setLabel(labelField.value());
         }
-        BS4DateTimePicker<?> dateTimePicker = new BS4DateTimePicker<>();
+        BSDateTimePicker<?> dateTimePicker = new BSDateTimePicker<>();
         dateTimePicker.asMe()
                 .addLabel(label.getLabel());
 
