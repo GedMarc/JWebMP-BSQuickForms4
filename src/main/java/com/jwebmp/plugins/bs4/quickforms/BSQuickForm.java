@@ -23,7 +23,7 @@
 package com.jwebmp.plugins.bs4.quickforms;
 
 import com.guicedee.guicedinjection.GuiceContext;
-import com.guicedee.logger.LogFactory;
+
 import com.jwebmp.core.Event;
 import com.jwebmp.core.base.angular.services.interfaces.*;
 import com.jwebmp.core.base.html.H1;
@@ -44,7 +44,7 @@ import java.util.*;
 import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.logging.Logger;
 
-import static com.guicedee.guicedinjection.json.StaticStrings.*;
+import static com.guicedee.services.jsonrepresentation.json.StaticStrings.*;
 
 /**
  * The Bootstrap 4 Implementation of the Quick Forms API

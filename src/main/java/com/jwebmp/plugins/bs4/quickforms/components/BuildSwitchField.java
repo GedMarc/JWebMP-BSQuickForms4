@@ -13,7 +13,7 @@ import com.jwebmp.plugins.quickforms.annotations.SwitchField;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 
-import static com.guicedee.guicedinjection.json.StaticStrings.STRING_DOT;
+import static com.guicedee.services.jsonrepresentation.json.StaticStrings.STRING_DOT;
 
 public class BuildSwitchField implements IAnnotationFieldHandler<SwitchField, BSFormInputGroup<?, BSSwitch4<?,?>>> {
     @Override
